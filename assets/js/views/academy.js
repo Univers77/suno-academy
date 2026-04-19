@@ -51,7 +51,7 @@ function renderTab(container) {
 }
 
 function renderVideos(body) {
-  const videos = window.SUNO?.data?.videos?.items || [];
+  const videos = window.SUNO?.data?.videos || [];
   const seen = store.get('videosSeen') || {};
 
   body.innerHTML = `
@@ -174,7 +174,7 @@ function renderLessons(body) {
 }
 
 function renderTips(body) {
-  const tips = window.SUNO?.data?.tips?.items || [];
+  const tips = window.SUNO?.data?.tips || [];
   body.innerHTML = `
     <div class="grid-3">
       ${tips.map(t => `

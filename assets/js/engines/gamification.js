@@ -23,7 +23,10 @@ const FALLBACK_LEVELS = [
 
 // ── API pública ─────────────────────────────────────────────
 export function getLevels() {
-  return window.SUNO?.data?.levels || FALLBACK_LEVELS;
+  const d = window.SUNO?.data?.levels;
+  if (Array.isArray(d)) return d;
+  if (d?.items && Array.isArray(d.items)) return d.items;
+  return FALLBACK_LEVELS;
 }
 
 export function getLevel(xp) {

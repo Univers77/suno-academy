@@ -55,10 +55,20 @@ async function loadData() {
     }))
   );
 
+  // Normalize: unwrap { items/entries/data } wrapper so all keys are plain arrays/objects
+  function unwrap(raw) {
+    if (!raw || typeof raw !== 'object') return raw;
+    if (Array.isArray(raw)) return raw;
+    if (Array.isArray(raw.items))   return raw.items;
+    if (Array.isArray(raw.entries)) return raw.entries;
+    if (Array.isArray(raw.data))    return raw.data;
+    return raw; // plain object (challenge, maxMode, etc.)
+  }
+
   results.forEach((res, i) => {
     const [key, path] = files[i];
     if (res.status === 'fulfilled') {
-      APP.data[key] = res.value;
+      APP.data[key] = unwrap(res.value);
     } else {
       console.warn(`[SUNO] Dataset faltante: ${path}`, res.reason?.message);
       APP.data[key] = null;

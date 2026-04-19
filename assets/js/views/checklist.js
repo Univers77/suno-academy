@@ -8,7 +8,7 @@ import { addXP }    from '../engines/gamification.js';
 import { store }    from '../store.js';
 
 export function render(container) {
-  const checks = window.SUNO?.data?.checks?.items || [];
+  const checks = window.SUNO?.data?.checks || [];
   const state = store.get('checklist') || {};
 
   const completed = () => checks.filter(c => state[c.id]).length;

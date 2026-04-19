@@ -7,7 +7,7 @@ import { $, toast } from '../utils/dom.js';
 import { addXP }    from '../engines/gamification.js';
 
 export function render(container) {
-  const pbs = window.SUNO?.data?.playbooks?.items || [];
+  const pbs = window.SUNO?.data?.playbooks || [];
   container.innerHTML = `
     <div class="section-head">
       <h1 class="section-title">Playbooks</h1>

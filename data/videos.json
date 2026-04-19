@@ -1,47 +1,292 @@
 {
-  "version": "1.0.0",
-  "updatedAt": "2026-04-18",
-  "_note": "Claude Code: reemplazar con los 28 videos exactos del documento de GG. Timestamps en segundos. Esta es la estructura.",
+  "version": "2.0.0",
+  "updatedAt": "2026-04-19",
   "items": [
     {
       "id": "v01",
-      "title": "Suno AI v4.5 — Guía completa de prompting",
-      "source": "YouTube Oficial",
-      "youtubeId": "dQw4w9WgXcQ",
+      "title": "Prompts Correctos vs Largos",
+      "youtubeId": "wawkrWw2In8",
       "categories": ["base", "workflow"],
-      "duration": "14:22",
+      "duration": "17:00",
       "timestamps": [
-        { "label": "Intro",                 "seconds": 0   },
-        { "label": "Style Field vs Lyrics", "seconds": 135 },
-        { "label": "Metatags esenciales",   "seconds": 340 },
-        { "label": "BPM y timing",          "seconds": 510 },
-        { "label": "Negativos",             "seconds": 720 }
+        { "label": "El problema real",         "seconds": 0,   "star": false },
+        { "label": "GPT Narmia",               "seconds": 28,  "star": true  },
+        { "label": "Modo 1 — balada",          "seconds": 87,  "star": true  },
+        { "label": "Random Mode",              "seconds": 276, "star": false },
+        { "label": "Studio Mode",              "seconds": 530, "star": true  },
+        { "label": "Modo Travieso",            "seconds": 714, "star": true  },
+        { "label": "GPT gratis",               "seconds": 868, "star": false }
       ]
     },
     {
       "id": "v02",
-      "title": "Max Mode — cómo llevar SUNO al límite",
-      "source": "Canal Max Studio",
-      "youtubeId": "dQw4w9WgXcQ",
+      "title": "Max Mode — Testeo Completo",
+      "youtubeId": "XfFG27IkjIM",
       "categories": ["maxmode", "tecnica"],
-      "duration": "9:45",
+      "duration": "17:00",
       "timestamps": [
-        { "label": "Qué es Max Mode",   "seconds": 0   },
-        { "label": "Style Max Mode",    "seconds": 120 },
-        { "label": "Vocal Max Mode",    "seconds": 280 },
-        { "label": "Duet Mode",         "seconds": 440 }
+        { "label": "Descubrimiento",           "seconds": 0,   "star": false },
+        { "label": "Testeo inicial",           "seconds": 85,  "star": true  },
+        { "label": "Test Trap +66%",           "seconds": 285, "star": true  },
+        { "label": "Test Pop",                 "seconds": 328, "star": false },
+        { "label": "Test Techno +75%",         "seconds": 394, "star": true  },
+        { "label": "Historia Max Mode",        "seconds": 459, "star": false },
+        { "label": "Cómo activar",             "seconds": 513, "star": true  },
+        { "label": "Max Mode en Lyrics",       "seconds": 667, "star": true  },
+        { "label": "Duetos bonus",             "seconds": 881, "star": false }
       ]
     },
     {
       "id": "v03",
-      "title": "Estrategia viral con SUNO: 5 hooks que funcionan",
-      "source": "GGLabs",
-      "youtubeId": "dQw4w9WgXcQ",
-      "categories": ["viral", "letras"],
-      "duration": "11:30",
+      "title": "Studio Mode — Instrumentos Solistas",
+      "youtubeId": "r60dTNcZntE",
+      "categories": ["tecnica", "studio"],
+      "duration": "13:00",
       "timestamps": [
-        { "label": "Hook de 3 segundos", "seconds": 0   },
-        { "label": "Estructura viral",    "seconds": 200 }
+        { "label": "Intro",                    "seconds": 0,   "star": false },
+        { "label": "Flauta árabe demo",        "seconds": 150, "star": true  },
+        { "label": "Guitarra flamenca",        "seconds": 340, "star": false },
+        { "label": "Soprano sin lyrics",       "seconds": 500, "star": true  },
+        { "label": "Stem splitter",            "seconds": 645, "star": true  }
+      ]
+    },
+    {
+      "id": "v04",
+      "title": "Modo Travieso — Calidad Máxima",
+      "youtubeId": "6WIFH6GMabA",
+      "categories": ["maxmode", "tecnica"],
+      "duration": "10:00",
+      "timestamps": [
+        { "label": "Qué es",                   "seconds": 0,   "star": false },
+        { "label": "Demo sin modo",            "seconds": 90,  "star": false },
+        { "label": "Demo CON modo",            "seconds": 225, "star": true  },
+        { "label": "Comparación mezcla",       "seconds": 360, "star": true  },
+        { "label": "Cuándo usar",              "seconds": 500, "star": false }
+      ]
+    },
+    {
+      "id": "v05",
+      "title": "Estructura de Canciones Virales",
+      "youtubeId": "icQDqvlIj-A",
+      "categories": ["viral", "base"],
+      "duration": "13:00",
+      "timestamps": [
+        { "label": "Anatomía hit viral",       "seconds": 0,   "star": false },
+        { "label": "TikTok 7 segundos",        "seconds": 120, "star": true  },
+        { "label": "Estructura Radio",         "seconds": 330, "star": false },
+        { "label": "EDM drop",                 "seconds": 480, "star": true  },
+        { "label": "Aplicando en Suno",        "seconds": 660, "star": false }
+      ]
+    },
+    {
+      "id": "v06",
+      "title": "Voces y Duetos Avanzados",
+      "youtubeId": "DIToC1PVXJE",
+      "categories": ["tecnica", "maxmode"],
+      "duration": "12:00",
+      "timestamps": [
+        { "label": "Control voces",            "seconds": 0,   "star": false },
+        { "label": "Vocal Max Mode sintaxis",  "seconds": 150, "star": true  },
+        { "label": "start on through",         "seconds": 300, "star": true  },
+        { "label": "Dueto hombre/mujer",       "seconds": 450, "star": true  },
+        { "label": "Géneros",                  "seconds": 600, "star": false }
+      ]
+    },
+    {
+      "id": "v07",
+      "title": "Géneros Experimentales",
+      "youtubeId": "f2msbSVOO1U",
+      "categories": ["base", "viral"],
+      "duration": "13:30",
+      "timestamps": [
+        { "label": "Por qué funcionan",        "seconds": 0,   "star": false },
+        { "label": "New Yas Break Beat",       "seconds": 120, "star": true  },
+        { "label": "Epic Nordic Folk Metal",   "seconds": 300, "star": true  },
+        { "label": "Glitchy Hyper Bob Trap",   "seconds": 495, "star": false },
+        { "label": "Géneros propios",          "seconds": 660, "star": true  }
+      ]
+    },
+    {
+      "id": "v08",
+      "title": "Mezcla y Stem Splitting",
+      "youtubeId": "-MMYt8zi9e0",
+      "categories": ["tecnica", "studio"],
+      "duration": "20:00",
+      "timestamps": [
+        { "label": "Limitaciones Suno",        "seconds": 0,   "star": false },
+        { "label": "Stem splitter uso",        "seconds": 180, "star": true  },
+        { "label": "Separar voz",              "seconds": 420, "star": false },
+        { "label": "Integrar DAW",             "seconds": 660, "star": true  },
+        { "label": "Flujo completo",           "seconds": 960, "star": true  }
+      ]
+    },
+    {
+      "id": "v09",
+      "title": "TikTok — Hook en 7 Segundos",
+      "youtubeId": "R3yMFYua2wg",
+      "categories": ["viral"],
+      "duration": "11:00",
+      "timestamps": [
+        { "label": "Psicología del scroll",    "seconds": 0,   "star": false },
+        { "label": "Hook perfecto",            "seconds": 120, "star": true  },
+        { "label": "Prompt TikTok",            "seconds": 270, "star": true  },
+        { "label": "3 estilos de hook",        "seconds": 420, "star": false },
+        { "label": "Loop 15 segundos",         "seconds": 540, "star": true  }
+      ]
+    },
+    {
+      "id": "v10",
+      "title": "Identidad Artística con IA",
+      "youtubeId": "XjmaO4ixy5Y",
+      "categories": ["base"],
+      "duration": "18:00",
+      "timestamps": [
+        { "label": "IA con identidad",         "seconds": 0,   "star": false },
+        { "label": "Firma sonora",             "seconds": 180, "star": true  },
+        { "label": "Consistencia",             "seconds": 420, "star": false },
+        { "label": "Variación en identidad",   "seconds": 660, "star": true  },
+        { "label": "Caso real",                "seconds": 900, "star": false }
+      ]
+    },
+    {
+      "id": "v11",
+      "title": "Flujo Completo de Producción",
+      "youtubeId": "3nL2aWNXJQw",
+      "categories": ["base", "tecnica", "workflow"],
+      "duration": "25:00",
+      "timestamps": [
+        { "label": "Overview",                 "seconds": 0,   "star": false },
+        { "label": "Fase 1 — idea",            "seconds": 180, "star": false },
+        { "label": "Fase 2 — prompt",          "seconds": 420, "star": true  },
+        { "label": "⭐ PUNTO CLAVE flujo real","seconds": 815, "star": true, "double": true },
+        { "label": "Selección",                "seconds": 1080,"star": false },
+        { "label": "Publicación",              "seconds": 1320,"star": false }
+      ]
+    },
+    {
+      "id": "v12",
+      "title": "Vocal Max Mode en Detalle",
+      "youtubeId": "lZQ9gF-f9E0",
+      "categories": ["maxmode", "tecnica"],
+      "duration": "14:00",
+      "timestamps": [
+        { "label": "Diferencia vocal",         "seconds": 0,   "star": false },
+        { "label": "Sintaxis exacta",          "seconds": 150, "star": true  },
+        { "label": "Demo Techno vs Vocal Max", "seconds": 300, "star": false },
+        { "label": "start on through",         "seconds": 480, "star": true  },
+        { "label": "Géneros que mejoran",      "seconds": 660, "star": false }
+      ]
+    },
+    {
+      "id": "v13",
+      "title": "Random Mode e Inspiración",
+      "youtubeId": "zVzsVOoIfLY",
+      "categories": ["base", "viral"],
+      "duration": "12:00",
+      "timestamps": [
+        { "label": "Para qué sirve",           "seconds": 1,   "star": false },
+        { "label": "New Yas Break Beat",       "seconds": 120, "star": true  },
+        { "label": "Nordic Folk Metal",        "seconds": 300, "star": false },
+        { "label": "Glitchy Hyper Bob",        "seconds": 435, "star": true  },
+        { "label": "Sorpresa → identidad",     "seconds": 600, "star": true  }
+      ]
+    },
+    {
+      "id": "v14",
+      "title": "Masterclass Futuro de Suno",
+      "youtubeId": "iytq802OFLo",
+      "categories": ["avanzado", "base"],
+      "duration": "20:00",
+      "timestamps": [
+        { "label": "Intro",                    "seconds": 0,   "star": false },
+        { "label": "Roadmap Suno AI",          "seconds": 240, "star": true  },
+        { "label": "Nuevas funciones",         "seconds": 600, "star": false },
+        { "label": "Estrategias avanzadas",    "seconds": 900, "star": true  },
+        { "label": "Q&A",                      "seconds": 1200,"star": false }
+      ]
+    },
+    {
+      "id": "v15",
+      "title": "Suno Sonic Lab v4.5",
+      "youtubeId": "j6vYBqwDiuE",
+      "categories": ["lab", "tecnica"],
+      "duration": "15:00",
+      "timestamps": [
+        { "label": "Intro v4.5",               "seconds": 0,   "star": false },
+        { "label": "Nuevas capacidades",       "seconds": 180, "star": false },
+        { "label": "⭐ Punto clave del lab",   "seconds": 516, "star": true, "double": true },
+        { "label": "Experimentos",             "seconds": 720, "star": false },
+        { "label": "Conclusiones",             "seconds": 840, "star": true  }
+      ]
+    },
+    {
+      "id": "v16",
+      "title": "Técnicas Expertas",
+      "youtubeId": "duUTZlGrdds",
+      "categories": ["avanzado", "tecnica"],
+      "duration": "16:00",
+      "timestamps": [
+        { "label": "Intro",                    "seconds": 0,   "star": false },
+        { "label": "Micro-prompting",          "seconds": 200, "star": true  },
+        { "label": "Layering de géneros",      "seconds": 480, "star": true  },
+        { "label": "Control de dinámica",      "seconds": 700, "star": false },
+        { "label": "Casos de uso",             "seconds": 900, "star": true  }
+      ]
+    },
+    {
+      "id": "v17",
+      "title": "Beats Dinámicos",
+      "youtubeId": "FwyTrsER0dw",
+      "categories": ["beats", "tecnica"],
+      "duration": "14:00",
+      "timestamps": [
+        { "label": "Intro",                    "seconds": 0,   "star": false },
+        { "label": "BPM y swing",              "seconds": 180, "star": true  },
+        { "label": "Patrones de batería",      "seconds": 420, "star": false },
+        { "label": "808 y bajos",              "seconds": 600, "star": true  },
+        { "label": "Demo completa",            "seconds": 780, "star": false }
+      ]
+    },
+    {
+      "id": "v18",
+      "title": "Síntesis Neural",
+      "youtubeId": "cLLXH1IfvwE",
+      "categories": ["sintesis", "avanzado"],
+      "duration": "13:00",
+      "timestamps": [
+        { "label": "Fundamentos síntesis",     "seconds": 1,   "star": false },
+        { "label": "Texturas y capas",         "seconds": 240, "star": true  },
+        { "label": "Síntesis vocal neural",    "seconds": 480, "star": true  },
+        { "label": "Aplicaciones creativas",   "seconds": 660, "star": false },
+        { "label": "Flujo de producción",      "seconds": 780, "star": true  }
+      ]
+    },
+    {
+      "id": "v19",
+      "title": "Optimización Micro",
+      "youtubeId": "CW-nUwyj6Ow",
+      "categories": ["optimizacion", "tecnica"],
+      "duration": "12:00",
+      "timestamps": [
+        { "label": "Intro",                    "seconds": 0,   "star": false },
+        { "label": "Ajustes de detalle",       "seconds": 180, "star": true  },
+        { "label": "Iteración rápida",         "seconds": 360, "star": false },
+        { "label": "A/B testing en Suno",      "seconds": 540, "star": true  },
+        { "label": "Resultados",               "seconds": 680, "star": false }
+      ]
+    },
+    {
+      "id": "v20",
+      "title": "Workflow Pipeline Completo",
+      "youtubeId": "IN_m5KAoSy4",
+      "categories": ["workflow", "avanzado"],
+      "duration": "18:00",
+      "timestamps": [
+        { "label": "Pipeline overview",        "seconds": 0,   "star": false },
+        { "label": "Idea → prompt",            "seconds": 240, "star": true  },
+        { "label": "Prompt → generación",      "seconds": 540, "star": false },
+        { "label": "Selección y refinado",     "seconds": 780, "star": true  },
+        { "label": "Distribución final",       "seconds": 960, "star": true  }
       ]
     }
   ]
