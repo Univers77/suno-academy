@@ -14,7 +14,7 @@ Te entrego un scaffolding completo en esta carpeta. Tu trabajo es **refinarlo, c
 
 - **Owner GitHub:** Univers77
 - **Repo:** suno-academy (ya debe existir creado manualmente desde la web, privado)
-- **Autor:** Alejandro Cosulich (GGLabs)
+- **Autor:** GGLabs
 - **Idioma del proyecto y de los commits:** español
 - **URL final:** `https://univers77.github.io/suno-academy/`
 

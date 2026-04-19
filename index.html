@@ -7,22 +7,1582 @@
 <meta name="description" content="SUNO ACADEMY — Aprende, domina y compite usando Suno AI. Motor de prompts, academia de videos con timestamps, coach de diagnóstico, playbooks, Max Mode y gamificación completa. GGLabs." />
 <meta property="og:title" content="SUNO ACADEMY" />
 <meta property="og:description" content="La academia definitiva para dominar Suno AI — motor de prompts, videos, coach de diagnóstico y gamificación." />
-<meta property="og:image" content="assets/img/og-cover.png" />
 <meta property="og:type" content="website" />
 <title>SUNO ACADEMY · Kinetic Studio</title>
-
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-<link rel="manifest" href="manifest.webmanifest" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="assets/css/tokens.css" />
-<link rel="stylesheet" href="assets/css/base.css" />
-<link rel="stylesheet" href="assets/css/layout.css" />
-<link rel="stylesheet" href="assets/css/components.css" />
-<link rel="stylesheet" href="assets/css/sections.css" />
+<style>
+/* ============================================================
+   SUNO ACADEMY · Design Tokens
+   Sistema "Kinetic Studio" — obsidiana + neón
+   ============================================================ */
+
+:root {
+  /* ── Base surfaces (obsidiana) ──────────────────────────── */
+  --bg:             #0c0e12;
+  --surface:        #0c0e12;
+  --surface-low:    #111318;
+  --surface-mid:    #1a1d23;
+  --surface-high:   #23262c;
+  --surface-bright: #2a2d33;
+
+  /* ── Acentos neón ──────────────────────────────────────── */
+  --primary:        #cf96ff;
+  --primary-dim:    #a533ff;
+  --secondary:      #00f4fe;
+  --tertiary:       #f3ffca;
+  --warn:           #f7ca65;
+  --danger:         #ff6d83;
+  --success:        #3cff99;
+
+  /* ── Texto ──────────────────────────────────────────────── */
+  --text:           #eaf2ff;
+  --text-2:         #b7c2da;
+  --text-3:         #6b7590;
+
+  /* ── Ghost line (solo accesibilidad) ───────────────────── */
+  --outline-ghost:  rgba(70, 72, 77, 0.20);
+
+  /* ── Gradients ─────────────────────────────────────────── */
+  --grad-primary:   linear-gradient(135deg, #cf96ff 0%, #a533ff 100%);
+  --grad-cool:      linear-gradient(135deg, #00f4fe 0%, #cf96ff 100%);
+  --grad-warm:      linear-gradient(135deg, #f3ffca 0%, #f7ca65 100%);
+  --grad-danger:    linear-gradient(90deg, #ff6d83, #f7ca65, #3cff99);
+
+  /* ── Ambient glows (reemplazan drop-shadows) ───────────── */
+  --glow-primary:   0 0 40px rgba(207, 150, 255, 0.16);
+  --glow-secondary: 0 0 40px rgba(0, 244, 254, 0.12);
+  --glow-tertiary:  0 0 40px rgba(243, 255, 202, 0.14);
+  --glow-card:      0 8px 40px rgba(0, 0, 0, 0.35);
+
+  /* ── Radii ─────────────────────────────────────────────── */
+  --r-sm:   8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-full: 999px;
+
+  /* ── Spacing ───────────────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 56px;
+
+  /* ── Glass ─────────────────────────────────────────────── */
+  --glass-bg:   rgba(42, 45, 51, 0.40);
+  --glass-blur: blur(20px);
+
+  /* ── Tipografía ────────────────────────────────────────── */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Tamaños de texto ──────────────────────────────────── */
+  --tx-display-lg: clamp(2.2rem, 5vw, 3.4rem);
+  --tx-display-md: clamp(1.7rem, 3.5vw, 2.4rem);
+  --tx-headline:   clamp(1.25rem, 2.2vw, 1.65rem);
+  --tx-title:      1.05rem;
+  --tx-body:       0.95rem;
+  --tx-small:      0.85rem;
+  --tx-xs:         0.75rem;
+
+  /* ── Z-index ───────────────────────────────────────────── */
+  --z-topbar: 50;
+  --z-nav:    45;
+  --z-toast:  90;
+  --z-modal:  100;
+
+  /* ── Transiciones ──────────────────────────────────────── */
+  --ease-out:  cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in:   cubic-bezier(0.8, 0.1, 0.95, 0.3);
+  --dur-fast:  0.16s;
+  --dur-med:   0.28s;
+  --dur-slow:  0.5s;
+}
+
+/* Accesibilidad: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0.01s;
+    --dur-med:  0.01s;
+    --dur-slow: 0.01s;
+  }
+}
+
+/* EOF */
+
+
+/* ============================================================
+   SUNO ACADEMY · Base styles
+   Reset, tipografía, fondos, scrollbar
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--tx-body);
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background canvas — absolute, detrás de todo */
+#bgc {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Tipografía display */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--sp-3);
+  color: var(--text);
+  line-height: 1.1;
+}
+
+h1 { font-size: var(--tx-display-md); }
+h2 { font-size: var(--tx-headline); }
+h3 { font-size: var(--tx-title); }
+h4 { font-size: var(--tx-body); font-weight: 600; }
+
+p { margin: 0 0 var(--sp-3); color: var(--text-2); }
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--secondary); }
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* Helpers */
+.muted { color: var(--text-3); }
+.mono  { font-family: var(--font-mono); }
+.grad-text {
+  background: var(--grad-cool);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Scrollbar oscuro */
+* { scrollbar-width: thin; scrollbar-color: var(--surface-high) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: var(--r-full);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--surface-bright); }
+
+/* Selección */
+::selection {
+  background: var(--primary-dim);
+  color: var(--text);
+}
+
+/* Loading placeholder */
+.loading-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  min-height: 60vh;
+  text-align: center;
+}
+.ring-ph {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--surface-high);
+  border-top-color: var(--primary);
+  animation: ringSpin 0.9s linear infinite;
+}
+@keyframes ringSpin { to { transform: rotate(360deg); } }
+
+/* Utilidades */
+[hidden] { display: none !important; }
+
+/* EOF */
+
+
+/* ============================================================
+   SUNO ACADEMY · Layout
+   Shell: topbar, sidebar, main, bottom-nav
+   ============================================================ */
+
+/* ── Topbar ──────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-topbar);
+  background: rgba(12, 14, 18, 0.75);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.topbar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--sp-3) var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-full);
+  color: var(--text-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.menu-btn:hover { color: var(--text); }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 1rem;
+  color: var(--text);
+  text-transform: uppercase;
+}
+.brand-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0c0e12;
+  font-size: 1rem;
+  box-shadow: var(--glow-primary);
+}
+.brand-text { color: var(--text); }
+.brand-accent { color: var(--primary); }
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.credit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 10px 16px;
+  border-radius: var(--r-full);
+  background: var(--surface-high);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--tx-small);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.credit-chip:hover {
+  background: var(--surface-bright);
+  box-shadow: var(--glow-secondary);
+}
+
+/* ── Shell (sidebar + main) ──────────────────────────────── */
+.shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--sp-6);
+  padding: var(--sp-5);
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 110px);
+  height: calc(100dvh - 110px);
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  color: var(--text-2);
+  font-weight: 500;
+  font-size: var(--tx-body);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.nav-link:hover {
+  background: var(--surface-mid);
+  color: var(--text);
+}
+.nav-link.active {
+  background: var(--surface-high);
+  color: var(--text);
+  box-shadow: inset 3px 0 0 0 var(--primary);
+}
+.nav-link.active .nav-icon { color: var(--primary); }
+
+.nav-icon {
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--text-3);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav-sep {
+  height: 1px;
+  margin: var(--sp-3) var(--sp-3);
+  background: var(--outline-ghost);
+}
+
+.sidebar-footer {
+  padding: var(--sp-2) var(--sp-3);
+}
+
+/* ── Main ────────────────────────────────────────────────── */
+.main {
+  min-height: calc(100vh - 80px);
+  min-height: calc(100dvh - 80px);
+}
+
+.view {
+  display: block;
+  animation: viewEnter var(--dur-med) var(--ease-out) both;
+}
+.view[hidden] { display: none !important; }
+
+@keyframes viewEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Bottom Nav (mobile) ─────────────────────────────────── */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-nav);
+  background: rgba(12, 14, 18, 0.85);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  padding: var(--sp-2) var(--sp-2) calc(var(--sp-2) + env(safe-area-inset-bottom));
+  justify-content: space-around;
+}
+
+.bn-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--sp-2) 6px;
+  color: var(--text-3);
+  border-radius: var(--r-md);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.bn-link.active {
+  color: var(--secondary);
+}
+.bn-link.active .bn-icon { filter: drop-shadow(0 0 8px rgba(0, 244, 254, 0.6)); }
+
+.bn-icon { font-size: 1.2rem; }
+.bn-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .menu-btn { display: inline-flex; }
+  .shell {
+    grid-template-columns: 1fr;
+    padding: var(--sp-3);
+    padding-bottom: calc(var(--sp-12) + 70px);
+  }
+  .sidebar {
+    position: fixed;
+    left: var(--sp-3);
+    right: var(--sp-3);
+    top: 70px;
+    bottom: 70px;
+    height: auto;
+    max-width: 320px;
+    z-index: var(--z-modal);
+    display: none;
+  }
+  .sidebar.open { display: flex; }
+  .bottom-nav { display: flex; }
+  .topbar-inner { padding: var(--sp-2) var(--sp-4); }
+  .brand-text { display: none; }
+  .brand-accent { display: inline; }
+}
+
+@media (max-width: 480px) {
+  .credit-chip { padding: 8px 12px; font-size: var(--tx-xs); }
+}
+
+/* EOF */
+
+
+/* ============================================================
+   SUNO ACADEMY · Components
+   Cards, buttons, chips, bars, toasts, HUD
+   ============================================================ */
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  position: relative;
+}
+.card.elevated {
+  background: var(--surface-high);
+}
+.card.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: var(--sp-2);
+}
+.card-sub {
+  color: var(--text-3);
+  font-size: var(--tx-small);
+  margin-bottom: var(--sp-4);
+}
+
+/* ── Eyebrow label ───────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 6px 12px;
+  border-radius: var(--r-full);
+  background: rgba(207, 150, 255, 0.10);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.eyebrow.teal {
+  background: rgba(0, 244, 254, 0.10);
+  color: var(--secondary);
+}
+.eyebrow.gold {
+  background: rgba(247, 202, 101, 0.10);
+  color: var(--warn);
+}
+
+/* ── Botones ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 12px 20px;
+  border-radius: var(--r-full);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--tx-body);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--grad-primary);
+  color: #0c0e12;
+  box-shadow: var(--glow-primary);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 50px rgba(207, 150, 255, 0.28);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: rgba(0, 244, 254, 0.12);
+  color: var(--secondary);
+  border-radius: var(--r-md);
+}
+.btn-secondary:hover { background: rgba(0, 244, 254, 0.18); }
+
+.btn-ghost {
+  background: var(--surface-high);
+  color: var(--text);
+}
+.btn-ghost:hover { background: var(--surface-bright); }
+
+.btn-tertiary {
+  background: transparent;
+  color: var(--secondary);
+  padding: 10px 14px;
+}
+.btn-tertiary:hover { background: rgba(0, 244, 254, 0.08); }
+
+.btn-danger {
+  background: rgba(255, 109, 131, 0.14);
+  color: var(--danger);
+}
+.btn-danger:hover { background: rgba(255, 109, 131, 0.22); }
+
+.btn-sm { padding: 8px 14px; font-size: var(--tx-small); }
+.btn-lg { padding: 16px 28px; font-size: 1rem; }
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Chips (pills interactivas) ──────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 8px 14px;
+  border-radius: var(--r-full);
+  background: var(--surface-high);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: var(--tx-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  user-select: none;
+}
+.chip:hover { color: var(--text); background: var(--surface-bright); }
+.chip.active {
+  background: var(--grad-primary);
+  color: #0c0e12;
+}
+.chip.ghost {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--tertiary);
+}
+.chip.data {
+  font-family: var(--font-mono);
+  color: var(--secondary);
+  background: rgba(0, 244, 254, 0.08);
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.chip-scroll {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: var(--sp-1);
+}
+.chip-scroll::-webkit-scrollbar { display: none; }
+.chip-scroll .chip { flex-shrink: 0; }
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.input, .textarea, .select {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--r-md);
+  background: var(--surface-mid);
+  color: var(--text);
+  font-family: inherit;
+  font-size: var(--tx-body);
+  border: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.input:focus, .textarea:focus, .select:focus {
+  background: var(--surface-high);
+}
+.textarea { min-height: 100px; resize: vertical; line-height: 1.55; }
+
+.field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+/* ── Range slider ────────────────────────────────────────── */
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: 24px;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--surface-high);
+  border-radius: var(--r-full);
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--surface-high);
+  border-radius: var(--r-full);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px; height: 18px;
+  background: var(--secondary);
+  border-radius: 50%;
+  margin-top: -7px;
+  box-shadow: var(--glow-secondary);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px;
+  background: var(--secondary);
+  border-radius: 50%;
+  border: none;
+  box-shadow: var(--glow-secondary);
+  cursor: pointer;
+}
+
+/* ── Barras de progreso ──────────────────────────────────── */
+.bar {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--surface-high);
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--grad-primary);
+  border-radius: var(--r-full);
+  transition: width var(--dur-med) var(--ease-out);
+}
+.bar-fill.cool    { background: var(--grad-cool); }
+.bar-fill.warm    { background: var(--grad-warm); }
+.bar-fill.score   { background: var(--grad-danger); }
+.bar-fill.success { background: var(--success); }
+
+/* ── Score big number ────────────────────────────────────── */
+.score-big {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: var(--tertiary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.score-slash { color: var(--text-3); margin: 0 var(--sp-2); }
+.score-total { color: var(--text-3); font-size: 1.5rem; }
+
+/* ── Mono block ──────────────────────────────────────────── */
+.mono-block {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--surface);
+  color: var(--tertiary);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 60px;
+}
+
+/* ── Toasts ──────────────────────────────────────────────── */
+.toast-stack {
+  position: fixed;
+  right: var(--sp-5);
+  bottom: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  z-index: var(--z-toast);
+  max-width: 360px;
+}
+.toast {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--surface-high);
+  color: var(--text);
+  font-size: var(--tx-small);
+  animation: toastIn var(--dur-med) var(--ease-out), toastOut var(--dur-med) var(--ease-out) 3s forwards;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+.toast.success { box-shadow: inset 3px 0 0 0 var(--success); }
+.toast.warn    { box-shadow: inset 3px 0 0 0 var(--warn); }
+.toast.error   { box-shadow: inset 3px 0 0 0 var(--danger); }
+.toast.epic    {
+  background: var(--grad-primary);
+  color: #0c0e12;
+  font-weight: 700;
+  box-shadow: var(--glow-primary);
+}
+
+@keyframes toastIn  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes toastOut { to   { opacity: 0; transform: translateY(8px); } }
+
+@media (max-width: 640px) {
+  .toast-stack { left: var(--sp-3); right: var(--sp-3); bottom: calc(var(--sp-3) + 70px); max-width: none; }
+}
+
+/* ── Level Ring (dashboard) ──────────────────────────────── */
+.ring-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+.ring-wrap svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ring-track {
+  stroke: var(--surface-high);
+  fill: none;
+  stroke-width: 10;
+}
+.ring-progress {
+  stroke: var(--tertiary);
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 12px rgba(207, 150, 255, 0.5));
+  transition: stroke-dashoffset var(--dur-slow) var(--ease-out);
+}
+.ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.ring-label .r-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+}
+.ring-label .r-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* ── Dimension row (coach) ───────────────────────────────── */
+.dim-row {
+  padding: var(--sp-4);
+  background: var(--surface-low);
+  border-radius: var(--r-md);
+  border-left: 3px solid var(--surface-high);
+}
+.dim-row.danger  { border-left-color: var(--danger); }
+.dim-row.warn    { border-left-color: var(--warn); }
+.dim-row.success { border-left-color: var(--success); }
+
+.dim-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+}
+.dim-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.dim-pct {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.dim-sub { color: var(--text-3); font-size: var(--tx-small); margin: 4px 0 var(--sp-3); }
+
+.skill-gain {
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--surface-mid);
+  border-radius: var(--r-md);
+}
+.skill-gain-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+.skill-gain-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--sp-3);
+}
+
+/* ── Sección headers ─────────────────────────────────────── */
+.section-head {
+  margin-bottom: var(--sp-6);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--tx-display-md);
+  margin-bottom: var(--sp-3);
+  letter-spacing: -0.02em;
+}
+.section-lead {
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* ── Timestamps (academy) ────────────────────────────────── */
+.ts-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--r-full);
+  background: rgba(0, 244, 254, 0.08);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.ts-link:hover { background: rgba(0, 244, 254, 0.18); }
+
+/* ── Mission card ────────────────────────────────────────── */
+.mission-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.mission-card:hover { transform: translateY(-2px); }
+.mission-card.done {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.mission-card.done::after {
+  content: '✓ COMPLETADA';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(60, 255, 153, 0.1);
+  color: var(--success);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: var(--tx-small);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(4px);
+}
+
+/* ── Badge chip ──────────────────────────────────────────── */
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-full);
+  background: var(--surface-high);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--tx-small);
+  font-weight: 600;
+}
+.badge-chip.earned {
+  background: var(--grad-primary);
+  color: #0c0e12;
+}
+
+/* EOF */
+
+
+/* ============================================================
+   SUNO ACADEMY · Sections
+   Estilos específicos por vista
+   ============================================================ */
+
+/* ── Grid util ──────────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+
+.grid-dashboard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-4);
+}
+.col-4  { grid-column: span 4; }
+.col-6  { grid-column: span 6; }
+.col-8  { grid-column: span 8; }
+.col-12 { grid-column: span 12; }
+
+@media (max-width: 980px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .col-4, .col-6, .col-8 { grid-column: span 12; }
+}
+@media (max-width: 540px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ── Dashboard ──────────────────────────────────────────── */
+.dash-level-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  text-align: center;
+}
+.dash-level-card h3 {
+  margin-top: var(--sp-4);
+  font-size: 1.5rem;
+}
+.dash-level-sub {
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: var(--tx-small);
+  margin-top: var(--sp-1);
+}
+.dash-unlock-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: 10px 14px;
+  border-radius: var(--r-full);
+  background: rgba(0, 244, 254, 0.08);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: var(--tx-small);
+  font-weight: 600;
+}
+
+.daily-pot {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+}
+.daily-pot-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-3);
+}
+.daily-pot-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.daily-pot-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--secondary);
+}
+.daily-pot-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--tx-xs);
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mission-of-day {
+  background: var(--surface-high);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  text-align: center;
+}
+.mod-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--warn);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+.mod-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: var(--sp-3);
+}
+.mod-title .mk-accent { color: var(--primary); }
+.mod-desc {
+  color: var(--text-3);
+  font-size: var(--tx-small);
+  max-width: 40ch;
+  margin: 0 auto var(--sp-4);
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+.skill-card {
+  background: var(--surface-low);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  position: relative;
+}
+.skill-card .sk-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-sm);
+  background: var(--surface-high);
+  color: var(--secondary);
+  margin-bottom: var(--sp-3);
+  font-size: 1.1rem;
+}
+.skill-card .sk-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.skill-card .sk-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.skill-card.mastered .sk-status { color: var(--success); }
+.skill-card.locked {
+  opacity: 0.5;
+}
+.skill-card.locked .sk-icon { color: var(--text-3); }
+
+/* ── Studio ─────────────────────────────────────────────── */
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+}
+@media (max-width: 980px) {
+  .studio-grid { grid-template-columns: 1fr; }
+}
+
+.synergy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 10px 16px;
+  border-radius: var(--r-full);
+  background: rgba(0, 244, 254, 0.08);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--tx-small);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--sp-5);
+}
+.synergy-chip .divider {
+  width: 1px;
+  height: 14px;
+  background: var(--outline-ghost);
+}
+
+.field-group {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+.field-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.field-group-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+.field-group.mood .field-group-name { color: var(--secondary); }
+
+.bpm-display {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--secondary);
+  margin-left: auto;
+}
+
+.output-block {
+  margin-bottom: var(--sp-4);
+}
+.output-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-2);
+}
+.output-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--tx-body);
+}
+
+/* ── Academy ────────────────────────────────────────────── */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+.video-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.video-thumb {
+  aspect-ratio: 16/9;
+  background: var(--surface-high);
+  position: relative;
+  overflow: hidden;
+}
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.video-body { padding: var(--sp-4); flex: 1; display: flex; flex-direction: column; gap: var(--sp-3); }
+.video-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.video-meta {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── Lessons ────────────────────────────────────────────── */
+.module-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+.module-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+}
+.module-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--surface-mid);
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-2);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.lesson-row:hover { background: var(--surface-high); }
+.lesson-row.completed { opacity: 0.7; }
+.lesson-row.completed .l-name::after { content: ' ✓'; color: var(--success); }
+.lesson-row .l-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--surface-high);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-3);
+  font-size: var(--tx-small);
+}
+.lesson-row .l-body { flex: 1; }
+.lesson-row .l-name { font-weight: 600; font-size: var(--tx-body); }
+.lesson-row .l-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+/* ── Coach ──────────────────────────────────────────────── */
+.coach-score-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.cs-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+.cs-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.cs-potential {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: var(--r-full);
+  background: rgba(0, 244, 254, 0.08);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--tx-small);
+}
+
+.mentor-note {
+  background: var(--surface-low);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--r-md);
+  padding: var(--sp-5);
+}
+.mentor-note-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-bottom: var(--sp-2);
+}
+
+/* ── Playbooks ──────────────────────────────────────────── */
+.playbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--sp-4);
+}
+.playbook-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.playbook-card .pb-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: var(--sp-1);
+}
+.playbook-card .pb-sum {
+  color: var(--text-2);
+  font-size: var(--tx-small);
+  line-height: 1.55;
+}
+.playbook-card .pb-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin: var(--sp-2) 0;
+}
+
+/* ── Arena ──────────────────────────────────────────────── */
+.arena-countdown {
+  display: flex;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+.cd-cell {
+  background: var(--surface-low);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  text-align: center;
+  flex: 1;
+}
+.cd-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--secondary);
+}
+.cd-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.challenge-card {
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  margin-bottom: var(--sp-5);
+  position: relative;
+}
+.challenge-prize {
+  position: absolute;
+  top: var(--sp-5);
+  right: var(--sp-5);
+  background: var(--surface-high);
+  padding: var(--sp-3);
+  border-radius: var(--r-md);
+  text-align: right;
+}
+.challenge-prize-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 2px;
+}
+.challenge-prize-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 1.25rem;
+}
+
+.top-contender {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background: var(--surface-low);
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-2);
+}
+.tc-rank {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--primary);
+  font-size: var(--tx-small);
+}
+.tc-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+}
+.tc-body { flex: 1; }
+.tc-name { font-weight: 700; font-size: var(--tx-body); }
+.tc-track { font-family: var(--font-mono); font-size: var(--tx-small); color: var(--text-3); }
+
+/* ── Profile ────────────────────────────────────────────── */
+.profile-head {
+  text-align: center;
+  padding: var(--sp-6);
+  background: var(--surface-low);
+  border-radius: var(--r-lg);
+  margin-bottom: var(--sp-5);
+}
+.profile-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  margin: 0 auto var(--sp-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0c0e12;
+  font-size: 2.5rem;
+  box-shadow: var(--glow-primary);
+}
+.profile-tag {
+  display: inline-block;
+  margin-bottom: var(--sp-2);
+}
+.profile-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+.profile-name .pn-accent {
+  background: var(--grad-cool);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.profile-bio {
+  color: var(--text-2);
+  max-width: 40ch;
+  margin: var(--sp-3) auto 0;
+  font-size: var(--tx-small);
+  line-height: 1.6;
+}
+
+.dna-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.dna-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: var(--tx-small);
+}
+.dna-bar {
+  flex: 2;
+}
+.dna-pct {
+  width: 44px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--tx-small);
+  text-align: right;
+  color: var(--secondary);
+}
+
+/* EOF */
+
+</style>
 </head>
 <body>
 
@@ -203,8 +1763,1985 @@
 <!-- Toast container -->
 <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
-<!-- Module loader -->
-<script type="module" src="assets/js/app.js"></script>
+<script>
 
+// ============================================================
+// SUNO ACADEMY · bundle autocontenido
+// Generado por build.js — 2026-04-19T19:47:46.094Z
+// ============================================================
+
+// === DATA ===
+const SUNO_DATA = {"videos":[{"id":"v01","title":"Prompts Correctos vs Largos","youtubeId":"wawkrWw2In8","categories":["base","workflow"],"duration":"17:00","timestamps":[{"label":"El problema real","seconds":0,"star":false},{"label":"GPT Narmia","seconds":28,"star":true},{"label":"Modo 1 — balada","seconds":87,"star":true},{"label":"Random Mode","seconds":276,"star":false},{"label":"Studio Mode","seconds":530,"star":true},{"label":"Modo Travieso","seconds":714,"star":true},{"label":"GPT gratis","seconds":868,"star":false}]},{"id":"v02","title":"Max Mode — Testeo Completo","youtubeId":"XfFG27IkjIM","categories":["maxmode","tecnica"],"duration":"17:00","timestamps":[{"label":"Descubrimiento","seconds":0,"star":false},{"label":"Testeo inicial","seconds":85,"star":true},{"label":"Test Trap +66%","seconds":285,"star":true},{"label":"Test Pop","seconds":328,"star":false},{"label":"Test Techno +75%","seconds":394,"star":true},{"label":"Historia Max Mode","seconds":459,"star":false},{"label":"Cómo activar","seconds":513,"star":true},{"label":"Max Mode en Lyrics","seconds":667,"star":true},{"label":"Duetos bonus","seconds":881,"star":false}]},{"id":"v03","title":"Studio Mode — Instrumentos Solistas","youtubeId":"r60dTNcZntE","categories":["tecnica","studio"],"duration":"13:00","timestamps":[{"label":"Intro","seconds":0,"star":false},{"label":"Flauta árabe demo","seconds":150,"star":true},{"label":"Guitarra flamenca","seconds":340,"star":false},{"label":"Soprano sin lyrics","seconds":500,"star":true},{"label":"Stem splitter","seconds":645,"star":true}]},{"id":"v04","title":"Modo Travieso — Calidad Máxima","youtubeId":"6WIFH6GMabA","categories":["maxmode","tecnica"],"duration":"10:00","timestamps":[{"label":"Qué es","seconds":0,"star":false},{"label":"Demo sin modo","seconds":90,"star":false},{"label":"Demo CON modo","seconds":225,"star":true},{"label":"Comparación mezcla","seconds":360,"star":true},{"label":"Cuándo usar","seconds":500,"star":false}]},{"id":"v05","title":"Estructura de Canciones Virales","youtubeId":"icQDqvlIj-A","categories":["viral","base"],"duration":"13:00","timestamps":[{"label":"Anatomía hit viral","seconds":0,"star":false},{"label":"TikTok 7 segundos","seconds":120,"star":true},{"label":"Estructura Radio","seconds":330,"star":false},{"label":"EDM drop","seconds":480,"star":true},{"label":"Aplicando en Suno","seconds":660,"star":false}]},{"id":"v06","title":"Voces y Duetos Avanzados","youtubeId":"DIToC1PVXJE","categories":["tecnica","maxmode"],"duration":"12:00","timestamps":[{"label":"Control voces","seconds":0,"star":false},{"label":"Vocal Max Mode sintaxis","seconds":150,"star":true},{"label":"start on through","seconds":300,"star":true},{"label":"Dueto hombre/mujer","seconds":450,"star":true},{"label":"Géneros","seconds":600,"star":false}]},{"id":"v07","title":"Géneros Experimentales","youtubeId":"f2msbSVOO1U","categories":["base","viral"],"duration":"13:30","timestamps":[{"label":"Por qué funcionan","seconds":0,"star":false},{"label":"New Yas Break Beat","seconds":120,"star":true},{"label":"Epic Nordic Folk Metal","seconds":300,"star":true},{"label":"Glitchy Hyper Bob Trap","seconds":495,"star":false},{"label":"Géneros propios","seconds":660,"star":true}]},{"id":"v08","title":"Mezcla y Stem Splitting","youtubeId":"-MMYt8zi9e0","categories":["tecnica","studio"],"duration":"20:00","timestamps":[{"label":"Limitaciones Suno","seconds":0,"star":false},{"label":"Stem splitter uso","seconds":180,"star":true},{"label":"Separar voz","seconds":420,"star":false},{"label":"Integrar DAW","seconds":660,"star":true},{"label":"Flujo completo","seconds":960,"star":true}]},{"id":"v09","title":"TikTok — Hook en 7 Segundos","youtubeId":"R3yMFYua2wg","categories":["viral"],"duration":"11:00","timestamps":[{"label":"Psicología del scroll","seconds":0,"star":false},{"label":"Hook perfecto","seconds":120,"star":true},{"label":"Prompt TikTok","seconds":270,"star":true},{"label":"3 estilos de hook","seconds":420,"star":false},{"label":"Loop 15 segundos","seconds":540,"star":true}]},{"id":"v10","title":"Identidad Artística con IA","youtubeId":"XjmaO4ixy5Y","categories":["base"],"duration":"18:00","timestamps":[{"label":"IA con identidad","seconds":0,"star":false},{"label":"Firma sonora","seconds":180,"star":true},{"label":"Consistencia","seconds":420,"star":false},{"label":"Variación en identidad","seconds":660,"star":true},{"label":"Caso real","seconds":900,"star":false}]},{"id":"v11","title":"Flujo Completo de Producción","youtubeId":"3nL2aWNXJQw","categories":["base","tecnica","workflow"],"duration":"25:00","timestamps":[{"label":"Overview","seconds":0,"star":false},{"label":"Fase 1 — idea","seconds":180,"star":false},{"label":"Fase 2 — prompt","seconds":420,"star":true},{"label":"⭐ PUNTO CLAVE flujo real","seconds":815,"star":true,"double":true},{"label":"Selección","seconds":1080,"star":false},{"label":"Publicación","seconds":1320,"star":false}]},{"id":"v12","title":"Vocal Max Mode en Detalle","youtubeId":"lZQ9gF-f9E0","categories":["maxmode","tecnica"],"duration":"14:00","timestamps":[{"label":"Diferencia vocal","seconds":0,"star":false},{"label":"Sintaxis exacta","seconds":150,"star":true},{"label":"Demo Techno vs Vocal Max","seconds":300,"star":false},{"label":"start on through","seconds":480,"star":true},{"label":"Géneros que mejoran","seconds":660,"star":false}]},{"id":"v13","title":"Random Mode e Inspiración","youtubeId":"zVzsVOoIfLY","categories":["base","viral"],"duration":"12:00","timestamps":[{"label":"Para qué sirve","seconds":1,"star":false},{"label":"New Yas Break Beat","seconds":120,"star":true},{"label":"Nordic Folk Metal","seconds":300,"star":false},{"label":"Glitchy Hyper Bob","seconds":435,"star":true},{"label":"Sorpresa → identidad","seconds":600,"star":true}]},{"id":"v14","title":"Masterclass Futuro de Suno","youtubeId":"iytq802OFLo","categories":["avanzado","base"],"duration":"20:00","timestamps":[{"label":"Intro","seconds":0,"star":false},{"label":"Roadmap Suno AI","seconds":240,"star":true},{"label":"Nuevas funciones","seconds":600,"star":false},{"label":"Estrategias avanzadas","seconds":900,"star":true},{"label":"Q&A","seconds":1200,"star":false}]},{"id":"v15","title":"Suno Sonic Lab v4.5","youtubeId":"j6vYBqwDiuE","categories":["lab","tecnica"],"duration":"15:00","timestamps":[{"label":"Intro v4.5","seconds":0,"star":false},{"label":"Nuevas capacidades","seconds":180,"star":false},{"label":"⭐ Punto clave del lab","seconds":516,"star":true,"double":true},{"label":"Experimentos","seconds":720,"star":false},{"label":"Conclusiones","seconds":840,"star":true}]},{"id":"v16","title":"Técnicas Expertas","youtubeId":"duUTZlGrdds","categories":["avanzado","tecnica"],"duration":"16:00","timestamps":[{"label":"Intro","seconds":0,"star":false},{"label":"Micro-prompting","seconds":200,"star":true},{"label":"Layering de géneros","seconds":480,"star":true},{"label":"Control de dinámica","seconds":700,"star":false},{"label":"Casos de uso","seconds":900,"star":true}]},{"id":"v17","title":"Beats Dinámicos","youtubeId":"FwyTrsER0dw","categories":["beats","tecnica"],"duration":"14:00","timestamps":[{"label":"Intro","seconds":0,"star":false},{"label":"BPM y swing","seconds":180,"star":true},{"label":"Patrones de batería","seconds":420,"star":false},{"label":"808 y bajos","seconds":600,"star":true},{"label":"Demo completa","seconds":780,"star":false}]},{"id":"v18","title":"Síntesis Neural","youtubeId":"cLLXH1IfvwE","categories":["sintesis","avanzado"],"duration":"13:00","timestamps":[{"label":"Fundamentos síntesis","seconds":1,"star":false},{"label":"Texturas y capas","seconds":240,"star":true},{"label":"Síntesis vocal neural","seconds":480,"star":true},{"label":"Aplicaciones creativas","seconds":660,"star":false},{"label":"Flujo de producción","seconds":780,"star":true}]},{"id":"v19","title":"Optimización Micro","youtubeId":"CW-nUwyj6Ow","categories":["optimizacion","tecnica"],"duration":"12:00","timestamps":[{"label":"Intro","seconds":0,"star":false},{"label":"Ajustes de detalle","seconds":180,"star":true},{"label":"Iteración rápida","seconds":360,"star":false},{"label":"A/B testing en Suno","seconds":540,"star":true},{"label":"Resultados","seconds":680,"star":false}]},{"id":"v20","title":"Workflow Pipeline Completo","youtubeId":"IN_m5KAoSy4","categories":["workflow","avanzado"],"duration":"18:00","timestamps":[{"label":"Pipeline overview","seconds":0,"star":false},{"label":"Idea → prompt","seconds":240,"star":true},{"label":"Prompt → generación","seconds":540,"star":false},{"label":"Selección y refinado","seconds":780,"star":true},{"label":"Distribución final","seconds":960,"star":true}]}],"levels":[{"min":0,"name":"RECRUIT"},{"min":300,"name":"BEATMAKER"},{"min":800,"name":"PRODUCER"},{"min":1800,"name":"ARCHITECT"},{"min":3500,"name":"ENGINEER"},{"min":6000,"name":"COMPOSER"},{"min":10000,"name":"DIRECTOR"},{"min":16000,"name":"MAESTRO"},{"min":25000,"name":"LEGEND"},{"min":40000,"name":"SONIC ARCHITECT"}],"badges":[{"id":"BG-FIRST","name":"Primer Prompt","description":"Generaste tu primer prompt.","rule":{"event":"prompt","threshold":1}},{"id":"BG-SCORE-100","name":"Perfección Absoluta","description":"Lograste score 100.","rule":{"event":"score","threshold":100}},{"id":"BG-STREAK-7","name":"Una Semana","description":"7 días consecutivos creando.","rule":{"event":"streak","threshold":7}},{"id":"BG-MAX-MASTER","name":"Max Master","description":"Copiaste los 3 códigos Max Mode.","rule":{"event":"maxcopy","threshold":3}},{"id":"BG-ACADEMY-GRAD","name":"Graduado Academy","description":"Viste los 28 videos.","rule":{"event":"videos","threshold":28}},{"id":"BG-PLAYBOOK-PRO","name":"Playbook Pro","description":"Aplicaste los 5 playbooks.","rule":{"event":"playbooks","threshold":5}},{"id":"BG-CHECKLIST-5","name":"Checklist Champ","description":"Completaste el checklist 5 veces.","rule":{"event":"checklist","threshold":5}},{"id":"BG-GENRE-EXPLORER","name":"Explorador","description":"Usaste 8 géneros distintos.","rule":{"event":"genres","threshold":8}},{"id":"BG-DNA-PERFECT","name":"DNA Perfecto","description":"Tu DNA creativo en 4 dimensiones ≥ 90%.","rule":{"event":"dna","threshold":90}},{"id":"BG-ARENA-RUNNER","name":"Gladiador","description":"Entraste al menos a 1 challenge.","rule":{"event":"arena","threshold":1}},{"id":"BG-MISSION-ALL","name":"Misión Cumplida","description":"Completaste las 6 misiones.","rule":{"event":"missions-all","threshold":6}},{"id":"BG-LEGEND","name":"Legend","description":"Alcanzaste nivel LEGEND (25,000 XP).","rule":{"event":"level","threshold":9}}],"missions":[{"id":"m01","level":1,"title":"Prompt estructurado básico","description":"Crea un prompt con al menos 3 metatags de estructura y score ≥ 60.","xp":15,"tokens":80,"template":"[Intro][Verse][Chorus][Verse][Chorus][Outro]\nGenre: __GENRE__\nBPM: 110\nMood: melancholic\nVocal: intimate female, breathy\nInstruments: piano, soft drums, bass\nLanguage: Spanish"},{"id":"m02","level":1,"title":"Negativos bien definidos","description":"Incluye al menos 3 bloqueos con 'NO QUIERO' en tu prompt.","xp":20,"tokens":100},{"id":"m03","level":2,"title":"Score ≥ 85","description":"Alcanza un score de 85 o más en el Coach analizando tu prompt.","xp":25,"tokens":150},{"id":"m04","level":2,"title":"Descriptor vocal completo","description":"Escribe un descriptor vocal con al menos 4 palabras (ej: ethereal female, breathy, intimate).","xp":30,"tokens":150},{"id":"m05","level":3,"title":"Max Mode aplicado","description":"Genera un prompt usando al menos un código Max Mode completo.","xp":40,"tokens":250},{"id":"m06","level":3,"title":"Prompt perfecto","description":"Alcanza score 100 en el Coach.","xp":50,"tokens":400}],"tips":[{"id":"t01","category":"STRUCTURE","title":"Metatags son obligatorios","body":"Sin [Intro], [Verse], [Chorus], SUNO decide al azar la estructura. Siempre incluye al menos 3 metatags para controlar el flujo narrativo."},{"id":"t02","category":"STRUCTURE","title":"Añade [Bridge] en canciones >2min","body":"El bridge rompe la monotonía. Sin él, SUNO tiende a repetir el chorus de forma predecible y el oyente se aburre."},{"id":"t03","category":"SPEC","title":"BPM exacto, no rango","body":"Escribe '140 bpm', no '130-150 bpm'. SUNO interpreta rangos como incertidumbre y genera ritmos inconsistentes."},{"id":"t04","category":"SPEC","title":"Menciona 3 instrumentos máximo","body":"Más de 3 instrumentos confunde al modelo. Concéntrate en el bajo, la percusión y un melódico principal."},{"id":"t05","category":"EMOTION","title":"2 emociones mínimo, 4 máximo","body":"Una sola emoción es plana. Más de cuatro crea tensión contradictoria. Rango óptimo: 2-4 adjetivos emocionales complementarios."},{"id":"t06","category":"EMOTION","title":"Adjetivos sensoriales > clichés","body":"'Gritty, distant, shimmering' activa más vectores que 'triste, feliz, épico'. Piensa en texturas, no en estados genéricos."},{"id":"t07","category":"VOCAL","title":"Descriptor vocal completo","body":"No basta 'female'. Escribe 'ethereal female, breathy, intimate, slight reverb'. 4 palabras mínimo para control vocal real."},{"id":"t08","category":"VOCAL","title":"'Instrumental only' bloquea voces","body":"Si quieres un track sin voz, escribe literal 'instrumental only, no vocals' en el Style Field. Solo 'instrumental' a veces falla."},{"id":"t09","category":"NEGATIVES","title":"NO QUIERO: 3 items mínimo","body":"Declara qué NO quieres. SUNO tiene sesgos por estilo; sin bloqueos, mete distorsión, crowd noise y reverb excesivo por default."},{"id":"t10","category":"NEGATIVES","title":"Bloquea 'distorsión excesiva'","body":"Si quieres limpieza tonal, 'NO distorsión excesiva, NO clipping, NO saturación agresiva' es una tríada efectiva."},{"id":"t11","category":"LENGTH","title":"80-160 palabras es el sweet spot","body":"Menos de 50 es insuficiente; más de 200 diluye atención. El óptimo para SUNO está entre 80 y 160 palabras en total."},{"id":"t12","category":"WORKFLOW","title":"Genera 3 versiones y quédate con 1","body":"SUNO es estocástico. Genera siempre 3 veces el mismo prompt, elige la mejor y descarta las otras 2. Nunca quedes con la primera."},{"id":"t13","category":"WORKFLOW","title":"Usa Persona para consistencia","body":"Si quieres varias canciones con la misma voz, guarda la voz como Persona en tu primer éxito y reusa. Mantiene timbre entre tracks."},{"id":"t14","category":"CREATIVE","title":"Referencia artistas con cuidado","body":"'In the style of Billie Eilish' puede funcionar o fallar. Mejor describe textura: 'breathy intimate female, whisper-close mic'."},{"id":"t15","category":"TECH","title":"Extend genera deriva","body":"Cada 'Extend' de SUNO aleja el track del prompt original. Máximo 2 extends; después, regenera desde cero."},{"id":"t16","category":"TECH","title":"Cover para limpiar voz","body":"Si la voz salió bien pero el instrumental no, usa Cover con nuevo prompt instrumental. Mantiene la voz y renueva el beat."}],"playbooks":[{"id":"pb-cinematic-epic","title":"Cinematic Epic Trailer","summary":"Banda sonora para tráilers épicos. Drama orquestal + tensión creciente + clímax explosivo.","level":"PRO","genre":"Cinematic Orchestral","subgenre":"epic trailer score","bpm":90,"mood":"epic","vocal":"instrumental only, no vocals","language":"Instrumental","structure":"[Intro][Build][Drop][Break][Build][Drop][Outro]","instruments":"full orchestra, taiko drums, braams, choir pads, strings staccato","theme":"ascenso heroico","vision":"Un héroe se prepara para el enfrentamiento final. La tensión se acumula hasta estallar en un drop orquestal masivo.","injectors":["dynamics","depth-bass","stereo-wide"]},{"id":"pb-synthwave-night","title":"Synthwave Night Drive","summary":"Conducir solo por una ciudad futurista. Nostálgico, dreamy, 100% vibes de los 80s.","level":"INTERMEDIATE","genre":"Synthwave","subgenre":"darksynth, retrowave","bpm":110,"mood":"nostalgic","vocal":"ethereal female, breathy, intimate","language":"English","structure":"[Intro][Verse][Chorus][Verse][Bridge][Chorus][Outro]","instruments":"analog synth pads, driving bassline, electric piano, soft drums","theme":"nostalgia urbana futurista","vision":"Manejar por una autopista en Neo Tokyo a medianoche, lluvia ácida, neón rosa.","injectors":["depth-bass","stereo-wide"]},{"id":"pb-trap-drill","title":"Dark Trap Anthem","summary":"Beat trap oscuro con 808 pesadas, hihats triplete, flow agresivo. Para letras en español.","level":"PRO","genre":"Trap","subgenre":"dark trap, latin drill","bpm":140,"mood":"aggressive","vocal":"deep male, gravelly, authoritative","language":"Spanish","structure":"[Hook][Verse][Hook][Verse][Hook]","instruments":"808 bass, triplet hihats, dark synth lead, sub-bass drop","theme":"resiliencia callejera","vision":"Barrio nocturno, luces LED frías, voz tensa y directa, bajo vibrando las paredes.","injectors":["depth-bass","punch-drums"]},{"id":"pb-lofi-study","title":"Lo-Fi Study Session","summary":"Instrumental relajado para estudiar o trabajar. Jazz chords + vinyl crackle + drums soft.","level":"BEGINNER","genre":"Lo-Fi Hip Hop","subgenre":"jazzhop, chillhop","bpm":78,"mood":"calm","vocal":"instrumental only, no vocals","language":"Instrumental","structure":"[Intro][Verse][Chorus][Verse][Outro]","instruments":"rhodes piano, vinyl crackle, soft jazz drums, upright bass","theme":"tarde lluviosa","vision":"Biblioteca vieja, lluvia afuera, luz cálida, páginas pasando sin prisa.","injectors":["warmth-tape","stereo-wide"]},{"id":"pb-reggaeton-romantic","title":"Reggaeton Romántico Moderno","summary":"Dembow suave, voz íntima, acordes menores. Para mercado latino 2026.","level":"INTERMEDIATE","genre":"Reggaeton","subgenre":"reggaeton lento, neo-perreo suave","bpm":95,"mood":"intimate","vocal":"intimate male, raw, emotional","language":"Spanish","structure":"[Intro][Verse][Pre-Chorus][Chorus][Verse][Bridge][Chorus][Outro]","instruments":"dembow kick pattern, soft synth pad, acoustic guitar, subtle piano","theme":"amor a distancia","vision":"Pareja separada por kilómetros, llamada de madrugada, corazón latiendo al ritmo del beat.","injectors":["depth-bass","warmth-tape"]}],"checks":[{"id":"ck01","title":"Género específico declarado","sub":"Ej: 'Dark synthwave' en vez de solo 'electronic'"},{"id":"ck02","title":"BPM exacto (no rango)","sub":"Un solo número. 110 bpm, no 100-120 bpm"},{"id":"ck03","title":"Al menos 3 metatags de estructura","sub":"[Intro], [Verse], [Chorus] como mínimo"},{"id":"ck04","title":"Descriptor vocal completo","sub":"4 palabras mínimo (ethereal female, breathy, intimate)"},{"id":"ck05","title":"2-4 adjetivos emocionales","sub":"Ni plano ni contradictorio"},{"id":"ck06","title":"Instrumentos principales (1-3)","sub":"Con adjetivos de textura"},{"id":"ck07","title":"NO QUIERO con 3+ items","sub":"Bloquea sesgos frecuentes de SUNO"},{"id":"ck08","title":"Idioma explícito","sub":"Language: Spanish / English / Instrumental"},{"id":"ck09","title":"Tema o visión narrativa","sub":"1 frase que describe el 'mundo' del track"},{"id":"ck10","title":"80-160 palabras totales","sub":"Sweet spot para SUNO"}],"injectors":[{"id":"depth-bass","label":"Depth Bass","text":"bass depth max, sub-bass presence, 40Hz low-end"},{"id":"punch-drums","label":"Punch Drums","text":"punchy drums, tight kick, compressed snare, clear transients"},{"id":"stereo-wide","label":"Wide Stereo","text":"wide stereo field, hard-panned guitars, immersive soundscape"},{"id":"warmth-tape","label":"Tape Warmth","text":"analog tape warmth, subtle saturation, vinyl texture"},{"id":"dynamics","label":"Dynamic Range","text":"wide dynamic range, breath between sections, pianissimo to fortissimo"},{"id":"clarity-mix","label":"Mix Clarity","text":"clean mix, balanced EQ, no muddy mids, crystal clear high end"}],"kb":[{"id":"kb-struct","dimension":"structure","lessonRef":"L3","videoRef":"v01"},{"id":"kb-vocal","dimension":"atmosphere","lessonRef":"L6","videoRef":"v02"},{"id":"kb-spec","dimension":"specificity","lessonRef":"L1","videoRef":"v01"},{"id":"kb-neg","dimension":"negatives","lessonRef":"L8"},{"id":"kb-pacing","dimension":"pacing","lessonRef":"L10"}],"lessons":{"version":"1.0.0","updatedAt":"2026-04-18","modules":[{"id":"mod-1","tag":"MÓDULO 1","title":"Fundamentos de SUNO","lessons":[{"id":"L1","title":"Anatomía de un prompt SUNO","level":"beginner","durationMin":8,"xp":60,"videoRef":"v01"},{"id":"L2","title":"Style Field vs Lyrics Field","level":"beginner","durationMin":10,"xp":80,"videoRef":"v01"},{"id":"L3","title":"Metatags de estructura","level":"beginner","durationMin":7,"xp":60},{"id":"L4","title":"BPM y selección de género","level":"beginner","durationMin":9,"xp":80}]},{"id":"mod-2","tag":"MÓDULO 2","title":"Max Mode y control avanzado","lessons":[{"id":"L5","title":"Style Max Mode","level":"intermediate","durationMin":12,"xp":120,"videoRef":"v02"},{"id":"L6","title":"Vocal Max Mode","level":"intermediate","durationMin":10,"xp":100,"videoRef":"v02"},{"id":"L7","title":"Duet Mode arquitectura","level":"advanced","durationMin":14,"xp":160},{"id":"L8","title":"Inyectores profesionales","level":"advanced","durationMin":11,"xp":140}]},{"id":"mod-3","tag":"MÓDULO 3","title":"Estrategia viral","lessons":[{"id":"L9","title":"Hooks de 3 segundos","level":"intermediate","durationMin":9,"xp":100,"videoRef":"v03"},{"id":"L10","title":"Estructura para shorts/reels","level":"intermediate","durationMin":11,"xp":120},{"id":"L11","title":"Letras que retienen","level":"intermediate","durationMin":13,"xp":140},{"id":"L12","title":"Cadencias para TikTok","level":"advanced","durationMin":10,"xp":120}]},{"id":"mod-4","tag":"MÓDULO 4","title":"Producción avanzada","lessons":[{"id":"L13","title":"Workflow profesional","level":"advanced","durationMin":15,"xp":200},{"id":"L14","title":"Persona para consistencia","level":"advanced","durationMin":12,"xp":160},{"id":"L15","title":"Extend sin deriva","level":"advanced","durationMin":13,"xp":180},{"id":"L16","title":"Cover y regeneración","level":"advanced","durationMin":14,"xp":200}]}]}};
+
+// === DOM UTILS ===
+// ============================================================
+// SUNO ACADEMY · utils/dom.js
+// Helpers mínimos: $, $$, on, el, escapeHtml
+// ============================================================
+
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+function on(target, event, handler, options) {
+  if (!target) return () => {};
+  target.addEventListener(event, handler, options);
+  return () => target.removeEventListener(event, handler, options);
+}
+
+/**
+ * Crea un elemento con atributos y children.
+ * el('div', {class: 'card'}, ['Hola', el('b', {}, 'mundo')])
+ */
+function el(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => {
+    if (v == null || v === false) return;
+    if (k === 'class') node.className = v;
+    else if (k === 'style' && typeof v === 'object') Object.assign(node.style, v);
+    else if (k.startsWith('on') && typeof v === 'function') node.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (k === 'dataset') Object.entries(v).forEach(([dk, dv]) => node.dataset[dk] = dv);
+    else if (k === 'html') node.innerHTML = v;
+    else node.setAttribute(k, v === true ? '' : v);
+  });
+  const kids = Array.isArray(children) ? children : [children];
+  kids.forEach(c => {
+    if (c == null || c === false) return;
+    if (typeof c === 'string' || typeof c === 'number') node.appendChild(document.createTextNode(String(c)));
+    else node.appendChild(c);
+  });
+  return node;
+}
+
+function escapeHtml(str = '') {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
+// Toast simple
+function toast(text, kind = 'info') {
+  const stack = $('#toastStack');
+  if (!stack) return;
+  const t = el('div', { class: `toast ${kind}`, role: 'status' }, text);
+  stack.appendChild(t);
+  setTimeout(() => { t.remove(); }, 3800);
+}
+
+// EOF
+
+
+// === STORE ===
+// ============================================================
+// SUNO ACADEMY · store.js
+// Persistencia local versionada con prefijo sa_v1_*
+// ============================================================
+
+const PREFIX = 'sa_v1_';
+
+const DEFAULTS = {
+  profile: {
+    name: 'Sound Architect',
+    avatar: null,
+    createdAt: null,
+    bio: 'Explorando los límites del audio generativo.'
+  },
+  stats: {
+    xp: 0,
+    level: 1,
+    tokens: 500,
+    maxTokens: 500,
+    combo: 0,
+    prompts: 0,
+    scoreSum: 0,
+    dailyCreditsEarned: 0,
+    dailyCreditsMax: 5500,
+    lastDaily: null
+  },
+  history:    [],              // Array<Prompt>
+  checklist:  {},              // {checkId: boolean}
+  missions:   {},              // {missionId: {done, completedAt}}
+  badges:     {},              // {badgeId: {earnedAt}}
+  videosSeen: {},              // {videoId: {seenAt, completed}}
+  lessons:    {},              // {lessonId: {completed, xpAwarded}}
+  streak:     { current: 0, best: 0, lastDate: null },
+  settings:   { language: 'es', reducedMotion: false, sound: true },
+  lastRoute:  null
+};
+
+const MAX_HISTORY = 50;
+
+// ── IO ──────────────────────────────────────────────────────
+function read(key) {
+  try {
+    const raw = localStorage.getItem(PREFIX + key);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) {
+    console.warn(`[store] read error ${key}:`, e);
+    return null;
+  }
+}
+
+function write(key, value) {
+  try {
+    localStorage.setItem(PREFIX + key, JSON.stringify(value));
+    return true;
+  } catch (e) {
+    console.warn(`[store] write error ${key}:`, e);
+    return false;
+  }
+}
+
+// ── API pública ─────────────────────────────────────────────
+const store = {
+  get(key) {
+    const val = read(key);
+    if (val === null) return structuredClone(DEFAULTS[key] ?? null);
+    return val;
+  },
+
+  set(key, value) {
+    return write(key, value);
+  },
+
+  merge(key, patch) {
+    const current = store.get(key) || {};
+    const merged = { ...current, ...patch };
+    return write(key, merged);
+  },
+
+  pushHistory(prompt) {
+    const hist = store.get('history') || [];
+    hist.unshift({ ...prompt, id: Date.now().toString(36), createdAt: new Date().toISOString() });
+    if (hist.length > MAX_HISTORY) hist.length = MAX_HISTORY;
+    return write('history', hist);
+  },
+
+  clearAll() {
+    Object.keys(localStorage)
+      .filter(k => k.startsWith(PREFIX))
+      .forEach(k => localStorage.removeItem(k));
+  },
+
+  export() {
+    const dump = {};
+    Object.keys(DEFAULTS).forEach(k => { dump[k] = store.get(k); });
+    return dump;
+  },
+
+  import(data) {
+    if (!data || typeof data !== 'object') return false;
+    Object.entries(data).forEach(([k, v]) => {
+      if (k in DEFAULTS) write(k, v);
+    });
+    return true;
+  }
+};
+
+// ── Asegurar schema al boot ─────────────────────────────────
+function ensureSchema() {
+  Object.entries(DEFAULTS).forEach(([key, def]) => {
+    const current = read(key);
+    if (current === null) {
+      // Primera vez: set default (clonado)
+      if (key === 'profile' && def.createdAt === null) {
+        def.createdAt = new Date().toISOString();
+      }
+      write(key, structuredClone(def));
+    } else if (typeof def === 'object' && !Array.isArray(def) && def !== null) {
+      // Merge superficial para rellenar claves nuevas sin borrar
+      const merged = { ...def, ...current };
+      write(key, merged);
+    }
+  });
+}
+
+// EOF
+
+
+// === ENGINE: GAMIFICATION ===
+// ============================================================
+// SUNO ACADEMY · engines/gamification.js
+// XP, niveles, tokens, combos, misiones, badges
+// Ver SUNO-ACADEMY-SPEC.md §15 para fórmulas exactas
+// ============================================================
+
+
+
+
+// ── Niveles: fallback si levels.json no cargó ───────────────
+const FALLBACK_LEVELS = [
+  { min: 0,     name: 'RECRUIT' },
+  { min: 300,   name: 'BEATMAKER' },
+  { min: 800,   name: 'PRODUCER' },
+  { min: 1800,  name: 'ARCHITECT' },
+  { min: 3500,  name: 'ENGINEER' },
+  { min: 6000,  name: 'COMPOSER' },
+  { min: 10000, name: 'DIRECTOR' },
+  { min: 16000, name: 'MAESTRO' },
+  { min: 25000, name: 'LEGEND' },
+  { min: 40000, name: 'SONIC ARCHITECT' }
+];
+
+// ── API pública ─────────────────────────────────────────────
+function getLevels() {
+  const d = window.SUNO?.data?.levels;
+  if (Array.isArray(d)) return d;
+  if (d?.items && Array.isArray(d.items)) return d.items;
+  return FALLBACK_LEVELS;
+}
+
+function getLevel(xp) {
+  const levels = getLevels();
+  let lv = levels[0], idx = 0;
+  levels.forEach((l, i) => { if (xp >= l.min) { lv = l; idx = i; } });
+  const next = levels[idx + 1] || null;
+  const pct = next ? Math.min(100, ((xp - lv.min) / (next.min - lv.min)) * 100) : 100;
+  return { lv, next, pct, index: idx };
+}
+
+function addXP(n, source = 'unknown') {
+  if (!Number.isFinite(n) || n <= 0) return;
+  const stats = store.get('stats');
+  const before = getLevel(stats.xp);
+  stats.xp += n;
+  const after = getLevel(stats.xp);
+  stats.level = after.index + 1;
+  store.set('stats', stats);
+  updateHUD();
+
+  if (after.index > before.index) {
+    toast(`🏆 ¡Subiste a ${after.lv.name}!`, 'epic');
+  } else {
+    toast(`+${n} XP · ${source}`, 'success');
+  }
+
+  window.dispatchEvent(new CustomEvent('suno:xp', { detail: { xp: stats.xp, source, delta: n } }));
+}
+
+function addTokens(n, full = false) {
+  const stats = store.get('stats');
+  if (full) {
+    stats.tokens = stats.maxTokens;
+    toast(`🔥 Refill completo! ${stats.maxTokens} tokens`, 'epic');
+  } else {
+    const old = stats.tokens;
+    stats.tokens = Math.min(stats.maxTokens, stats.tokens + n);
+    if (stats.tokens > old) toast(`⚡ +${stats.tokens - old} tokens`, 'success');
+  }
+  store.set('stats', stats);
+  updateHUD();
+}
+
+function spendTokens(n) {
+  const stats = store.get('stats');
+  stats.tokens = Math.max(0, stats.tokens - n);
+  store.set('stats', stats);
+  updateHUD();
+  if (stats.tokens < 80) toast(`⚠ Tokens bajos: ${stats.tokens}`, 'warn');
+  return stats.tokens >= 0;
+}
+
+function processCombo(score) {
+  const stats = store.get('stats');
+  stats.prompts = (stats.prompts || 0) + 1;
+  stats.scoreSum = (stats.scoreSum || 0) + score;
+
+  if (score >= 70) {
+    stats.combo = (stats.combo || 0) + 1;
+    if (stats.combo === 2)       addTokens(50);
+    else if (stats.combo === 3) { addTokens(100); addXP(10, 'combo x3'); }
+    else if (stats.combo === 5) { addTokens(500, true); addXP(25, 'combo x5'); }
+    else if (stats.combo > 5 && stats.combo % 5 === 0) addTokens(200);
+  } else if (score < 40) {
+    stats.combo = 0;
+  }
+
+  store.set('stats', stats);
+  updateHUD();
+}
+
+// ── HUD (chip de créditos en topbar) ────────────────────────
+function updateHUD() {
+  const chip = $('#creditValue');
+  if (!chip) return;
+  const stats = store.get('stats');
+  chip.textContent = stats.tokens.toLocaleString();
+}
+
+// ── Badges ──────────────────────────────────────────────────
+function checkBadges(eventType, data = {}) {
+  const badgesData = window.SUNO?.data?.badges || [];
+  const earned = store.get('badges') || {};
+
+  badgesData.forEach(b => {
+    if (earned[b.id]) return; // ya lo tiene
+    if (matchesBadgeRule(b, eventType, data)) {
+      earned[b.id] = { earnedAt: new Date().toISOString() };
+      toast(`🏅 Badge desbloqueado: ${b.name}`, 'epic');
+      window.dispatchEvent(new CustomEvent('suno:badge', { detail: b }));
+    }
+  });
+
+  store.set('badges', earned);
+}
+
+function matchesBadgeRule(badge, eventType, data) {
+  // TODO (Claude Code): implementar motor de reglas completo.
+  // Por ahora, match simple por evento:
+  if (!badge.rule) return false;
+  return badge.rule.event === eventType &&
+         (!badge.rule.threshold || (data.value ?? 0) >= badge.rule.threshold);
+}
+
+// ── Init ────────────────────────────────────────────────────
+function initGamification() {
+  updateHUD();
+}
+
+// EOF
+
+
+// === ENGINE: ANALYZER ===
+// ============================================================
+// SUNO ACADEMY · engines/analyzer.js
+// Motor de scoring de prompts de Suno — 5 dimensiones
+// Adaptado del Mentor Profesor (Univers77/SUNO-Mentor-Profesor)
+// Ver SUNO-ACADEMY-SPEC.md §9 y §20
+// ============================================================
+
+// ── Keyword banks ───────────────────────────────────────────
+const TOKEN_KEYWORDS = {
+  style: ['indie','pop','rock','metal','jazz','blues','soul','funk','electronic','techno','house','ambient','cinematic','folk','country','reggaeton','latin','trap','hiphop','hip-hop','rnb','r&b','classical','orchestral','synthpop','darkwave','lofi','lo-fi','punk','alternative','grunge','shoegaze','dreamy','atmospheric','ethereal','industrial','drum and bass','dnb','dubstep','minimal','noir','epic','acoustic','electric','analog','vintage','modern','synthwave','phonk','drill','boom bap','neo-soul','bossa nova','flamenco','cumbia','salsa'],
+  structure: ['[intro]','[verse]','[chorus]','[bridge]','[outro]','[pre-chorus]','[hook]','[build]','[drop]','[break]','[interlude]','[solo]','[climax]','[refrain]','[vamp]'],
+  emotion: ['melancholic','melancólico','melancólica','sad','triste','happy','feliz','epic','épico','épica','dark','oscuro','oscura','bright','euphoric','eufórico','nostalgic','nostálgico','angry','agresivo','agresiva','tender','íntimo','íntima','powerful','poderoso','dramatic','dramático','haunting','mysterious','misterioso','bittersweet','agridulce','yearning','hopeful','urgent','calm','calmado','serene','aggressive','soulful','triumphant','contemplative'],
+  negative: ['no quiero','no meter','sin ','no hay','elimina','eliminar','sin voz','no voz','no drums','no batería','no brass','instrumental only','no público','no crowd','no reverb','no quiero que','evitar','avoid',"don't",'do not'],
+  technical: ['bpm','hz','khz','db','eq','compressor','reverb','delay','chorus','flanger','stereo','mono','midi','daw','stems','master','mix','frequency','velocity','dynamics','compression','saturation','tape','analog','digital','lo-fi','hi-fi','vinyl','sample','layer','pad','arpeggio','chord','key','scale','tempo','4/4','3/4','6/8','major','minor','tonalidad','clave']
+};
+
+// ── Tokenizador ─────────────────────────────────────────────
+function countTokens(text) {
+  if (!text || !text.trim()) return { total: 0, style: 0, struct: 0, emo: 0, neg: 0, tech: 0 };
+  const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+  const total = words.length;
+  let style = 0, struct = 0, emo = 0, neg = 0, tech = 0;
+  const lower = text.toLowerCase();
+  TOKEN_KEYWORDS.style.forEach(k => { if (lower.includes(k)) style++; });
+  TOKEN_KEYWORDS.structure.forEach(k => { if (lower.includes(k)) struct++; });
+  TOKEN_KEYWORDS.emotion.forEach(k => { if (lower.includes(k)) emo++; });
+  TOKEN_KEYWORDS.negative.forEach(k => { if (lower.includes(k)) neg++; });
+  TOKEN_KEYWORDS.technical.forEach(k => { if (lower.includes(k)) tech++; });
+  return { total, style, struct, emo, neg, tech };
+}
+
+// ── Analizador principal ────────────────────────────────────
+function analyzePrompt(text) {
+  const tk = countTokens(text);
+  if (!text || text.trim().length < 10) return null;
+
+  const lower = text.toLowerCase();
+
+  // Especificidad
+  let spec = 0;
+  TOKEN_KEYWORDS.style.forEach(k => { if (lower.includes(k)) spec += 10; });
+  if (/\d+\s*(bpm|beats)/i.test(text)) spec += 15;
+  if (/(major|minor|mayor|menor)/i.test(text)) spec += 10;
+  if (/(guitar|piano|violin|drums|bass|synth|guitarra|batería|cuerdas|trompeta|saxo)/i.test(text)) spec += 15;
+  spec = Math.min(100, spec);
+
+  // Estructura
+  let struct = 0;
+  TOKEN_KEYWORDS.structure.forEach(k => { if (lower.includes(k)) struct += 15; });
+  struct = Math.min(100, struct);
+
+  // Emoción
+  let emo = 0;
+  TOKEN_KEYWORDS.emotion.forEach(k => { if (lower.includes(k)) emo += 14; });
+  emo = Math.min(100, emo);
+
+  // Negativos
+  let neg = 0;
+  TOKEN_KEYWORDS.negative.forEach(k => { if (lower.includes(k)) neg += 20; });
+  neg = Math.min(100, neg);
+
+  // Balance de longitud
+  let bal = 0;
+  if (tk.total >= 80 && tk.total <= 160) bal = 100;
+  else if (tk.total >= 50 && tk.total < 80) bal = 70;
+  else if (tk.total >= 160 && tk.total <= 220) bal = 60;
+  else if (tk.total > 0) bal = 30;
+
+  const score = Math.round(spec * 0.25 + struct * 0.25 + emo * 0.2 + neg * 0.15 + bal * 0.15);
+
+  return { spec, struct, emo, neg, bal, score, tk };
+}
+
+// ── Construcción del diagnóstico de 5 dimensiones ───────────
+// Adaptado al layout Stitch (Coach): 5 dimensiones con status + skill gain
+function buildDimensions(res, text) {
+  if (!res) return [];
+  const lower = (text || '').toLowerCase();
+
+  const dims = [
+    {
+      id: 'structure',
+      name: 'Structural Definition',
+      pct: res.struct,
+      status: res.struct >= 80 ? 'success' : res.struct >= 50 ? 'warn' : 'danger',
+      sub: res.struct >= 80
+        ? 'Metatags presentes y bien distribuidos.'
+        : res.struct >= 50
+          ? 'Estructura parcial. Añade [Bridge] o [Pre-Chorus] para narrativa completa.'
+          : 'Sin metatags explícitos. SUNO decide aleatoriamente.',
+      skillGain: res.struct < 80 ? { name: 'Metatag Mastery', delta: '+25%', reward: 400 } : null
+    },
+    {
+      id: 'atmosphere',
+      name: 'Atmospheric Clarity',
+      pct: res.emo,
+      status: res.emo >= 80 ? 'success' : res.emo >= 40 ? 'warn' : 'danger',
+      sub: res.emo >= 80
+        ? 'Adjetivos descriptivos fuertes y vividos.'
+        : 'Los adjetivos emocionales activan vectores específicos en SUNO. Agrega 2-3 más.',
+      skillGain: res.emo < 80 ? { name: 'Emotional Engineering', delta: '+15%', reward: 200 } : null
+    },
+    {
+      id: 'specificity',
+      name: 'Sonic Specificity',
+      pct: res.spec,
+      status: res.spec >= 80 ? 'success' : res.spec >= 50 ? 'warn' : 'danger',
+      sub: res.spec >= 80
+        ? 'BPM, género, instrumentación concretos.'
+        : 'Falta precisión: agrega BPM exacto, referencia de artista o instrumento principal.',
+      skillGain: res.spec < 80 ? { name: 'Sonic Precision', delta: '+20%', reward: 300 } : null
+    },
+    {
+      id: 'negatives',
+      name: 'Boundary Control',
+      pct: res.neg,
+      status: res.neg >= 60 ? 'success' : res.neg >= 20 ? 'warn' : 'danger',
+      sub: res.neg >= 60
+        ? 'Restricciones bien definidas.'
+        : 'Agrega "NO QUIERO" con al menos 3 items para evitar errores frecuentes de SUNO.',
+      skillGain: res.neg < 60 ? { name: 'Negative Space', delta: '+18%', reward: 250 } : null
+    },
+    {
+      id: 'pacing',
+      name: 'Narrative Pacing',
+      pct: res.bal,
+      status: res.bal >= 80 ? 'success' : res.bal >= 50 ? 'warn' : 'danger',
+      sub: res.bal >= 80
+        ? 'Longitud óptima para SUNO.'
+        : res.tk.total < 50
+          ? `Muy corto (${res.tk.total} palabras). Apunta a 80-160.`
+          : `Muy largo (${res.tk.total} palabras). Corta a 160 máximo.`,
+      skillGain: res.bal < 80 ? { name: 'Dynamic Arrangement', delta: '+10%', reward: 200 } : null
+    }
+  ];
+
+  // Voz (se reporta dentro de Atmospheric si falta)
+  if (!/(voz|voice|vocal|soprano|baritone|tenor|alto|contralto|mezzo|breathy|gravelly|falsetto|clean|raspy|instrumental only)/i.test(text)) {
+    const atm = dims.find(d => d.id === 'atmosphere');
+    atm.sub += ' · Sin descriptor vocal: SUNO elegirá al azar.';
+  }
+
+  return dims;
+}
+
+// Mentor note contextual
+function buildMentorNote(res, text) {
+  if (!res) return {
+    title: 'Esperando tu prompt',
+    body: 'Pega tu prompt en el taller y analizaré cada elemento en tiempo real.'
+  };
+  if (res.score >= 85) return {
+    title: 'Prompt sobresaliente',
+    body: 'Tu prompt tiene todos los elementos clave. Listo para generar con consistencia profesional en SUNO.'
+  };
+  if (res.score >= 65) return {
+    title: 'Camino correcto',
+    body: 'Las bases están bien. Tus descripciones atmosféricas son sólidas. Refina estructura y negativos para llegar al nivel profesional.'
+  };
+  if (res.score >= 40) return {
+    title: 'Necesita trabajo',
+    body: 'El prompt tiene potencial pero le faltan elementos críticos. Revisa las dimensiones marcadas en rojo y aplica las correcciones sugeridas.'
+  };
+  return {
+    title: 'Demasiado genérico',
+    body: 'El prompt es insuficiente para SUNO. Agrega: género específico, BPM, descriptor vocal, al menos una emoción concreta y metatags de estructura.'
+  };
+}
+
+// EOF
+
+
+// === ENGINE: BUILDER ===
+// ============================================================
+// SUNO ACADEMY · engines/builder.js
+// Genera Style Field + Lyrics Field + Full Prompt
+// Ver SUNO-ACADEMY-SPEC.md §7.3
+// ============================================================
+
+/**
+ * Construye los tres outputs a partir del estado del formulario.
+ * @param {Object} state - { genre, subgenre, bpm, mood, vocal, language, structure, instruments, theme, vision, injectors }
+ * @param {Object} injectorsMap - { [id]: texto ej 'bass depth max, sub-bass presence' }
+ * @returns {{style:string, lyrics:string, full:string}}
+ */
+function buildPrompt(state, injectorsMap = {}) {
+  const s = state || {};
+  const active = Array.isArray(s.injectors) ? s.injectors : [...(s.injectors || [])];
+
+  // Style Field
+  const styleParts = [
+    s.genre,
+    s.subgenre,
+    s.bpm ? `${s.bpm} bpm` : null,
+    s.mood,
+    s.vocal && !/instrumental only/i.test(s.vocal) ? s.vocal : null,
+    s.instruments
+  ].filter(Boolean);
+
+  const injectorTexts = active
+    .map(id => injectorsMap[id])
+    .filter(Boolean);
+
+  const style = [styleParts.join(', '), injectorTexts.join(', ')]
+    .filter(Boolean)
+    .join(', ');
+
+  // Lyrics Field
+  const isInstrumental = s.language === 'Instrumental' || /instrumental only/i.test(s.vocal || '');
+  const lyricsParts = [
+    s.structure,
+    isInstrumental ? 'Instrumental piece' : `Language: ${s.language || 'Spanish'}`,
+    s.theme  ? `Theme: ${s.theme}`   : null,
+    s.vision ? `Vision: ${s.vision}` : null
+  ].filter(Boolean);
+
+  const lyrics = lyricsParts.join('\n');
+
+  // Full
+  const full = `--- STYLE FIELD ---\n${style}\n\n--- LYRICS FIELD ---\n${lyrics}`;
+
+  return { style, lyrics, full };
+}
+
+/**
+ * Sugiere BPM según género (cuando el usuario selecciona un género y aún no tocó el slider).
+ */
+function suggestBPM(genre = '') {
+  const g = genre.toLowerCase();
+  const map = {
+    'trap': 140, 'dark trap': 142, 'phonk': 138, 'drill': 145,
+    'house': 128, 'progressive house': 128, 'techno': 135,
+    'synthwave': 110, 'darksynth': 115, 'outrun': 100,
+    'indie pop': 110, 'pop': 118,
+    'lo-fi hip hop': 78, 'lofi': 78,
+    'drum & bass': 174, 'dnb': 174, 'dubstep': 140,
+    'cinematic orchestral': 90, 'epic score': 95, 'trailer music': 90,
+    'dark ambient': 70, 'ambient': 72,
+    'r&b soul': 85, 'neo-soul': 90,
+    'alternative rock': 120, 'rock': 120,
+    'reggaeton': 95, 'latin': 100,
+    'folk': 95
+  };
+  for (const [key, bpm] of Object.entries(map)) {
+    if (g.includes(key)) return bpm;
+  }
+  return 120;
+}
+
+// EOF
+
+
+// === ENGINE: VISUALIZER ===
+// ============================================================
+// SUNO ACADEMY · engines/visualizer.js
+// Canvas: background waves + score particles
+// ============================================================
+
+let waveRAF = null;
+
+function initBackgroundWaves(canvas) {
+  if (!canvas) return;
+
+  // Respetar reduced-motion
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+
+  const waves = [
+    { a: 55, f: 0.0022, p: 0,    sp: 0.006, c: 'rgba(207,150,255,0.035)' },
+    { a: 80, f: 0.0018, p: 2.1,  sp: 0.009, c: 'rgba(0,244,254,0.028)' },
+    { a: 40, f: 0.0028, p: 4.2,  sp: 0.012, c: 'rgba(243,255,202,0.022)' }
+  ];
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    waves.forEach(w => {
+      w.p += w.sp;
+      ctx.beginPath();
+      ctx.moveTo(0, H * 0.5);
+      for (let x = 0; x <= W; x += 6) {
+        ctx.lineTo(x, H * 0.5 + Math.sin(x * w.f + w.p) * w.a);
+      }
+      ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+      ctx.fillStyle = w.c;
+      ctx.fill();
+    });
+    waveRAF = requestAnimationFrame(loop);
+  }
+  loop();
+
+  window.addEventListener('resize', resize);
+}
+
+function stopBackgroundWaves() {
+  if (waveRAF) cancelAnimationFrame(waveRAF);
+  waveRAF = null;
+}
+
+/**
+ * TODO (Claude Code): implementar `renderScoreParticles(canvas, score)`.
+ * Basado en Mentor Profesor `buildParticles(score)`:
+ * - <30: pocas, grises, lentas, sin conexiones.
+ * - 30-59: medias, doradas, velocidad media, conexiones tenues.
+ * - 60-84: más, teal, rápidas, conexiones marcadas.
+ * - 85+: muchas, mezcla teal+primary, rápidas, red densa.
+ */
+function renderScoreParticles(/* canvas, score */) {
+  // Pendiente de implementación — ver SUNO-ACADEMY-SPEC.md §16.2
+}
+
+// EOF
+
+
+// === VIEW: DASHBOARD ===
+// ============================================================
+// SUNO ACADEMY · views/dashboard.js
+// Home gamificado: Level Ring + Daily Potential + Mission of Day + Skill Architecture
+// Ver SUNO-ACADEMY-SPEC.md §6
+// ============================================================
+
+
+
+
+
+function renderDashboard(container) {
+  const stats = store.get('stats');
+  const { lv, next, pct } = getLevel(stats.xp);
+  const levelNum = stats.level || 1;
+  const xpToNext = next ? next.min - stats.xp : 0;
+
+  // Ring circumference con r=70
+  const R = 70;
+  const C = 2 * Math.PI * R;
+  const offset = C - (pct / 100) * C;
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Dashboard</h1>
+      <p class="section-lead">Tu estudio de aprendizaje gamificado. Completa misiones, gana XP y sube en la arquitectura de habilidades.</p>
+    </div>
+
+    <div class="grid-dashboard">
+
+      <!-- Level Ring -->
+      <div class="col-6">
+        <div class="dash-level-card">
+          <div class="ring-wrap">
+            <svg viewBox="0 0 180 180">
+              <circle class="ring-track" cx="90" cy="90" r="${R}"></circle>
+              <circle class="ring-progress" cx="90" cy="90" r="${R}"
+                stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${offset.toFixed(2)}"></circle>
+            </svg>
+            <div class="ring-label">
+              <div class="r-kicker">LVL</div>
+              <div class="r-value">${levelNum}</div>
+            </div>
+          </div>
+          <h3>${next ? 'Cerca, ' : 'Eres '}<span class="grad-text">${lv.name}</span></h3>
+          <div class="dash-level-sub">${stats.xp.toLocaleString()} ${next ? `/ ${next.min.toLocaleString()} XP al nivel ${levelNum + 1}` : '· nivel máximo'}</div>
+          ${next ? `<div class="dash-unlock-chip">🔒 Próximo desbloqueo: <strong>${next.name}</strong> · ${xpToNext} XP</div>` : ''}
+        </div>
+      </div>
+
+      <!-- Daily Potential -->
+      <div class="col-6">
+        <div class="daily-pot">
+          <div class="daily-pot-head">
+            <div>
+              <div class="daily-pot-label">Daily Potential</div>
+              <div class="daily-pot-value">${stats.dailyCreditsMax.toLocaleString()}<span style="font-size:1rem;color:var(--text-3);margin-left:6px;">CR</span></div>
+            </div>
+            <span style="color:var(--success)">↗</span>
+          </div>
+          <div class="bar">
+            <div class="bar-fill cool" style="width:${Math.min(100, (stats.dailyCreditsEarned / stats.dailyCreditsMax) * 100).toFixed(0)}%"></div>
+          </div>
+          <div class="daily-pot-foot">
+            <span>Earned: ${stats.dailyCreditsEarned.toLocaleString()}</span>
+            <span>Max: ${stats.dailyCreditsMax.toLocaleString()}</span>
+          </div>
+        </div>
+
+        <!-- Mission of the Day -->
+        <div class="mission-of-day" style="margin-top:var(--sp-4)">
+          <div class="mod-eyebrow">🔥 MISSION OF THE DAY</div>
+          <div class="mod-title">Crea un <span class="mk-accent">prompt estructurado</span> con score ≥ 60</div>
+          <div class="mod-desc">Incluye género, BPM, emoción y al menos un instrumento específico. Gana XP y créditos.</div>
+          <a href="#/studio" class="btn btn-primary">▶ Ir al Studio</a>
+        </div>
+      </div>
+
+      <!-- Skill Architecture -->
+      <div class="col-12">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--sp-4)">
+            <h2 class="card-title">Skill Architecture</h2>
+            <a href="#/academy" class="btn btn-tertiary btn-sm">VER TODO →</a>
+          </div>
+          <div class="skill-grid">
+            <div class="skill-card mastered">
+              <div class="sk-icon">🎚</div>
+              <div class="sk-name">Mixing Basics</div>
+              <div class="sk-status">MASTERED</div>
+            </div>
+            <div class="skill-card mastered">
+              <div class="sk-icon">◈</div>
+              <div class="sk-name">Arrangement</div>
+              <div class="sk-status">MASTERED</div>
+            </div>
+            <div class="skill-card">
+              <div class="sk-icon">🎛</div>
+              <div class="sk-name">Advanced EQ</div>
+              <div class="bar" style="margin-top:8px"><div class="bar-fill cool" style="width:60%"></div></div>
+              <div class="sk-status" style="margin-top:6px">60%</div>
+            </div>
+            <div class="skill-card locked">
+              <div class="sk-icon">🔒</div>
+              <div class="sk-name">Vocal Synthesis</div>
+              <div class="sk-status">REQUIERE LVL 15</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+function destroyDashboard() {}
+
+// EOF
+
+
+// === VIEW: STUDIO ===
+// ============================================================
+// SUNO ACADEMY · views/studio.js
+// Synthesis Engine — builder de prompts con 5D scoring en vivo
+// Ver SUNO-ACADEMY-SPEC.md §7
+// ============================================================
+
+
+
+
+
+
+
+const GENRES = ['Trap','Synthwave','House','Indie Pop','Cinematic Orchestral','Dark Ambient','Drum & Bass','Lo-Fi Hip Hop','Techno','R&B Soul','Alternative Rock','Reggaeton','Folk'];
+const MOODS  = ['gritty','ethereal','aggressive','melancholic','euphoric','nostalgic','dark','dreamy','intimate','triumphant'];
+const VOCALS = [
+  'ethereal female, breathy, intimate',
+  'intimate male, raw, emotional',
+  'powerful female, belting, soulful',
+  'deep male, gravelly, authoritative',
+  'processed neural, vocoder, robotic',
+  'duet, male and female, harmonized',
+  'instrumental only, no vocals'
+];
+const STRUCTURES = [
+  '[Intro][Verse][Chorus][Verse][Bridge][Chorus][Outro]',
+  '[Hook][Verse][Hook][Verse][Hook]',
+  '[Intro][Build][Drop][Break][Build][Drop][Outro]',
+  '[Verse][Pre-Chorus][Chorus][Verse][Bridge][Chorus]'
+];
+
+let state = {
+  genre: 'Synthwave', subgenre: '', bpm: 110,
+  mood: 'gritty', vocal: VOCALS[0], language: 'Spanish',
+  structure: STRUCTURES[0], instruments: '', theme: '', vision: '',
+  injectors: new Set()
+};
+
+function renderStudio(container) {
+  const injectorsMap = (window.SUNO?.data?.injectors || []).reduce((acc, i) => {
+    acc[i.id] = i.text; return acc;
+  }, {});
+  const injectorsList = window.SUNO?.data?.injectors || [];
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Synthesis <span class="grad-text">Engine</span></h1>
+      <p class="section-lead">Construye tus prompts enlazando elementos musicales. Nuestro studio cinético analiza las conexiones en tiempo real.</p>
+    </div>
+
+    <div class="synergy-chip">
+      <span>⚡ SYNERGY: <span id="synergyVal">HIGH</span></span>
+      <span class="divider"></span>
+      <span>✦ Score: <span id="scoreVal" class="mono">0</span>%</span>
+    </div>
+
+    <div class="studio-grid">
+      <!-- Columna 1: form -->
+      <div>
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">GENRE</div></div>
+          <div class="chip-scroll" id="genreChips"></div>
+          <div style="margin-top:var(--sp-3)">
+            <label class="field-label">Subgenre / textura</label>
+            <input class="input" type="text" id="subgenre" placeholder="ej: darksynth, phonk, cinematic score" />
+          </div>
+        </div>
+
+        <div class="field-group mood">
+          <div class="field-group-head"><div class="field-group-name">MOOD</div></div>
+          <div class="chip-scroll" id="moodChips"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head">
+            <div class="field-group-name">BPM</div>
+            <span class="bpm-display" id="bpmVal">110</span>
+          </div>
+          <input type="range" id="bpm" min="60" max="180" value="110" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">VOCAL</div></div>
+          <select class="select" id="vocal">
+            ${VOCALS.map(v => `<option>${v}</option>`).join('')}
+          </select>
+          <div style="margin-top:var(--sp-3)">
+            <label class="field-label">Idioma</label>
+            <select class="select" id="language">
+              <option>Spanish</option><option>English</option><option>Spanglish</option><option>Portuguese</option><option>Instrumental</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">STRUCTURE</div></div>
+          <select class="select" id="structure">
+            ${STRUCTURES.map(s => `<option>${s}</option>`).join('')}
+          </select>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">INSTRUMENTS</div></div>
+          <input class="input" type="text" id="instruments" placeholder="ej: analog bass, 808 drums, airy arpeggios" />
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">THEME & VISION</div></div>
+          <textarea class="textarea" id="vision" placeholder="Una canción synthwave para conducir solo por una ciudad futurista de noche."></textarea>
+          <div style="margin-top:var(--sp-3)">
+            <input class="input" type="text" id="theme" placeholder="Tema: nostalgia, noche, viaje en el tiempo" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-head"><div class="field-group-name">PROFESSIONAL INJECTORS</div></div>
+          <div class="chip-row" id="injectorChips"></div>
+        </div>
+
+        <div class="chip-row" style="margin-top:var(--sp-5)">
+          <button class="btn btn-primary btn-lg" id="generateBtn">▶ INITIALIZE TRACK</button>
+          <button class="btn btn-ghost" id="saveBtn">💾 Guardar</button>
+          <button class="btn btn-danger btn-sm" id="clearBtn">Limpiar</button>
+        </div>
+      </div>
+
+      <!-- Columna 2: outputs -->
+      <div>
+        <div class="card" style="margin-bottom:var(--sp-4)">
+          <div class="card-title">Quality Score</div>
+          <div class="bar"><div class="bar-fill score" id="scoreBar" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:var(--sp-2);font-family:var(--font-mono);font-size:var(--tx-small)">
+            <span class="muted" id="scoreCaption">Comienza a construir tu prompt</span>
+            <span id="scoreNum" class="mono" style="color:var(--secondary)">0%</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="output-block">
+            <div class="output-head">
+              <span class="output-name">Style Field</span>
+              <button class="btn btn-secondary btn-sm" data-copy="style">Copiar</button>
+            </div>
+            <div class="mono-block" id="outStyle">Inicia tu build para ver el output</div>
+          </div>
+
+          <div class="output-block">
+            <div class="output-head">
+              <span class="output-name">Lyrics Field</span>
+              <button class="btn btn-secondary btn-sm" data-copy="lyrics">Copiar</button>
+            </div>
+            <div class="mono-block" id="outLyrics">—</div>
+          </div>
+
+          <div class="output-block">
+            <div class="output-head">
+              <span class="output-name">Full Prompt</span>
+              <button class="btn btn-secondary btn-sm" data-copy="full">Copiar</button>
+            </div>
+            <div class="mono-block" id="outFull">—</div>
+          </div>
+
+          <a href="#/coach" class="btn btn-tertiary btn-sm" style="margin-top:var(--sp-3)">Enviar al Coach →</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Renderizar chips
+  const gCon = $('#genreChips', container);
+  GENRES.forEach(g => {
+    const c = el('div', { class: 'chip' + (g === state.genre ? ' active' : ''), dataset: { val: g } }, g);
+    c.addEventListener('click', () => {
+      state.genre = g;
+      $('#bpm', container).value = suggestBPM(g);
+      state.bpm = parseInt($('#bpm', container).value);
+      $('#bpmVal', container).textContent = state.bpm;
+      renderChips();
+      updateScore();
+    });
+    gCon.appendChild(c);
+  });
+
+  const mCon = $('#moodChips', container);
+  MOODS.forEach(m => {
+    const c = el('div', { class: 'chip' + (m === state.mood ? ' active' : ''), dataset: { val: m } }, m);
+    c.addEventListener('click', () => {
+      state.mood = m;
+      renderChips();
+      updateScore();
+    });
+    mCon.appendChild(c);
+  });
+
+  const iCon = $('#injectorChips', container);
+  injectorsList.forEach(inj => {
+    const c = el('div', { class: 'chip', dataset: { id: inj.id } }, inj.label || inj.id);
+    c.addEventListener('click', () => {
+      if (state.injectors.has(inj.id)) state.injectors.delete(inj.id);
+      else state.injectors.add(inj.id);
+      c.classList.toggle('active');
+      updateScore();
+    });
+    iCon.appendChild(c);
+  });
+
+  function renderChips() {
+    container.querySelectorAll('#genreChips .chip').forEach(c => c.classList.toggle('active', c.dataset.val === state.genre));
+    container.querySelectorAll('#moodChips .chip').forEach(c => c.classList.toggle('active', c.dataset.val === state.mood));
+  }
+
+  // Inputs simples
+  const bindInput = (id) => {
+    $('#' + id, container)?.addEventListener('input', (e) => {
+      state[id] = e.target.value;
+      if (id === 'bpm') $('#bpmVal', container).textContent = e.target.value;
+      updateScore();
+    });
+  };
+  ['subgenre', 'bpm', 'vocal', 'language', 'structure', 'instruments', 'theme', 'vision'].forEach(bindInput);
+
+  // Generar
+  $('#generateBtn', container).addEventListener('click', () => {
+    if (!spendTokens(50)) {
+      toast('No tienes tokens suficientes', 'warn');
+      return;
+    }
+    const out = buildPrompt(state, injectorsMap);
+    $('#outStyle', container).textContent  = out.style  || '—';
+    $('#outLyrics', container).textContent = out.lyrics || '—';
+    $('#outFull', container).textContent   = out.full   || '—';
+    const res = analyzePrompt(out.full);
+    if (res) {
+      processCombo(res.score);
+      if (res.score >= 85) addXP(20, 'Prompt excelente');
+      else if (res.score >= 60) addXP(15, 'Prompt sólido');
+    }
+    toast('Track inicializado', 'success');
+  });
+
+  $('#saveBtn', container).addEventListener('click', () => {
+    const out = buildPrompt(state, injectorsMap);
+    if (!out.full || out.full.length < 20) {
+      toast('Genera primero tu prompt', 'warn');
+      return;
+    }
+    store.pushHistory({
+      ...out,
+      genre: state.genre, bpm: state.bpm, mood: state.mood
+    });
+    toast('Guardado en el historial', 'success');
+  });
+
+  $('#clearBtn', container).addEventListener('click', () => {
+    state = {
+      genre: 'Synthwave', subgenre: '', bpm: 110,
+      mood: 'gritty', vocal: VOCALS[0], language: 'Spanish',
+      structure: STRUCTURES[0], instruments: '', theme: '', vision: '',
+      injectors: new Set()
+    };
+    renderStudio(container);
+  });
+
+  // Copy
+  container.querySelectorAll('[data-copy]').forEach(b => {
+    b.addEventListener('click', async () => {
+      const which = b.dataset.copy;
+      const idMap = { style: 'outStyle', lyrics: 'outLyrics', full: 'outFull' };
+      const text = $('#' + idMap[which], container).textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        toast('Copiado ✓', 'success');
+      } catch { toast('No se pudo copiar', 'error'); }
+    });
+  });
+
+  function updateScore() {
+    const out = buildPrompt(state, injectorsMap);
+    const res = analyzePrompt(out.full);
+    const score = res ? res.score : 0;
+    $('#scoreBar', container).style.width = score + '%';
+    $('#scoreNum', container).textContent = score + '%';
+    $('#scoreVal', container).textContent = score;
+    $('#synergyVal', container).textContent = score >= 75 ? 'HIGH' : score >= 45 ? 'MEDIUM' : 'LOW';
+    const caption = score >= 85 ? '🏆 Excelente' : score >= 60 ? '⭐ Buen prompt' : score >= 30 ? '📊 Refinando' : 'Comienza a construir';
+    $('#scoreCaption', container).textContent = caption;
+  }
+  updateScore();
+}
+
+function destroyStudio() {}
+
+// EOF
+
+
+// === VIEW: ACADEMY ===
+// ============================================================
+// SUNO ACADEMY · views/academy.js
+// Videos + Lecciones + Tips con timestamps reales
+// Ver SUNO-ACADEMY-SPEC.md §8
+// ============================================================
+
+
+
+
+
+const CATS = ['todos','base','maxmode','viral','tecnica','voces','estilo','workflow','coach','letras','beats','sintesis','instrumentos','optimizacion','lab'];
+
+let currentTab = 'videos';
+let filterCat = 'todos';
+let searchTerm = '';
+
+function renderAcademy(container, query) {
+  if (query?.tab && ['videos','lecciones','tips'].includes(query.tab)) currentTab = query.tab;
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Academy</h1>
+      <p class="section-lead">Videos con timestamps exactos, lecciones estructuradas y tips profesionales para dominar SUNO AI.</p>
+    </div>
+
+    <div class="chip-row" style="margin-bottom:var(--sp-5)">
+      <button class="chip ${currentTab==='videos'?'active':''}" data-tab="videos">Videos</button>
+      <button class="chip ${currentTab==='lecciones'?'active':''}" data-tab="lecciones">Lecciones</button>
+      <button class="chip ${currentTab==='tips'?'active':''}" data-tab="tips">Tips</button>
+    </div>
+
+    <div id="academyBody"></div>
+  `;
+
+  $$('.chip[data-tab]', container).forEach(c => {
+    c.addEventListener('click', () => {
+      currentTab = c.dataset.tab;
+      location.hash = `#/academy?tab=${currentTab}`;
+    });
+  });
+
+  renderTab(container);
+}
+
+function renderTab(container) {
+  const body = $('#academyBody', container);
+  if (!body) return;
+  if (currentTab === 'videos')   renderVideos(body);
+  if (currentTab === 'lecciones') renderLessons(body);
+  if (currentTab === 'tips')      renderTips(body);
+}
+
+function renderVideos(body) {
+  const videos = window.SUNO?.data?.videos || [];
+  const seen = store.get('videosSeen') || {};
+
+  body.innerHTML = `
+    <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-4);flex-wrap:wrap">
+      <input class="input" id="vSearch" placeholder="Buscar videos..." style="flex:1;min-width:220px" />
+    </div>
+    <div class="chip-scroll" id="catChips" style="margin-bottom:var(--sp-4)">
+      ${CATS.map(c => `<button class="chip ${filterCat===c?'active':''}" data-cat="${c}">${c}</button>`).join('')}
+    </div>
+    <div class="video-grid" id="vGrid"></div>
+  `;
+
+  $('#vSearch', body).value = searchTerm;
+  $('#vSearch', body).addEventListener('input', e => { searchTerm = e.target.value.toLowerCase(); paintGrid(); });
+  $$('.chip[data-cat]', body).forEach(c => {
+    c.addEventListener('click', () => { filterCat = c.dataset.cat; paintGrid(); });
+  });
+
+  function paintGrid() {
+    const grid = $('#vGrid', body);
+    const filtered = videos.filter(v => {
+      const matchCat = filterCat === 'todos' || (v.categories || []).includes(filterCat);
+      const matchQ = !searchTerm ||
+        v.title?.toLowerCase().includes(searchTerm) ||
+        v.source?.toLowerCase().includes(searchTerm) ||
+        (v.categories || []).some(c => c.includes(searchTerm));
+      return matchCat && matchQ;
+    });
+    grid.innerHTML = filtered.length === 0
+      ? `<div class="card"><p class="muted">No hay videos con esos filtros.</p></div>`
+      : filtered.map(v => videoCard(v, seen[v.id])).join('');
+    $$('.video-card', grid).forEach(card => {
+      card.querySelector('[data-seen]')?.addEventListener('change', e => {
+        const id = card.dataset.id;
+        const now = store.get('videosSeen') || {};
+        if (e.target.checked && !now[id]) {
+          now[id] = { seenAt: new Date().toISOString(), completed: true };
+          addXP(5, 'Video visto');
+        } else if (!e.target.checked) {
+          delete now[id];
+        }
+        store.set('videosSeen', now);
+      });
+    });
+    $$('.ts-link', grid).forEach(a => {
+      a.addEventListener('click', () => setTimeout(() => toast('Abriendo en YouTube...'), 100));
+    });
+    $$('[data-cat-chip]', body).forEach(c => c.classList.toggle('active', c.dataset.catChip === filterCat));
+  }
+  paintGrid();
+}
+
+function videoCard(v, seen) {
+  const thumb = v.youtubeId ? `https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg` : '';
+  const ytUrl = v.youtubeId ? `https://www.youtube.com/watch?v=${v.youtubeId}` : '#';
+  const ts = (v.timestamps || []).slice(0, 6).map(t =>
+    `<a class="ts-link" href="${ytUrl}&t=${t.seconds}s" target="_blank" rel="noopener">${t.label} · ${fmt(t.seconds)}</a>`
+  ).join('');
+  return `
+    <article class="video-card" data-id="${v.id}">
+      <div class="video-thumb">${thumb ? `<img src="${thumb}" alt="" loading="lazy">` : ''}</div>
+      <div class="video-body">
+        <div class="video-meta">
+          ${(v.categories||[]).map(c => `<span>#${c}</span>`).join('')}
+          ${v.source ? `<span>· ${v.source}</span>` : ''}
+        </div>
+        <div class="video-title">${v.title}</div>
+        ${ts ? `<div class="chip-row" style="gap:6px">${ts}</div>` : ''}
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:var(--sp-2)">
+          <a class="btn btn-secondary btn-sm" href="${ytUrl}" target="_blank" rel="noopener">Abrir en YouTube</a>
+          <label style="display:flex;align-items:center;gap:6px;font-size:var(--tx-xs);color:var(--text-3);cursor:pointer">
+            <input type="checkbox" data-seen ${seen ? 'checked' : ''} /> visto
+          </label>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function fmt(s) {
+  const m = Math.floor(s / 60), r = s % 60;
+  return `${m}:${String(r).padStart(2,'0')}`;
+}
+
+function renderLessons(body) {
+  const lessons = window.SUNO?.data?.lessons?.modules || [];
+  const progress = store.get('lessons') || {};
+  body.innerHTML = lessons.map(m => `
+    <div class="module-card">
+      <div class="module-head">
+        <div>
+          <div class="eyebrow">${m.tag || 'MÓDULO'}</div>
+          <div class="module-title">${m.title}</div>
+        </div>
+      </div>
+      ${(m.lessons || []).map((l, i) => `
+        <div class="lesson-row ${progress[l.id]?.completed ? 'completed' : ''}" data-lesson="${l.id}">
+          <div class="l-num">${i+1}</div>
+          <div class="l-body">
+            <div class="l-name">${l.title}</div>
+            <div class="l-meta">${l.level || 'beginner'} · ${l.durationMin || 5} min · +${l.xp || 80} XP</div>
+          </div>
+          <button class="btn btn-tertiary btn-sm" data-complete="${l.id}">${progress[l.id]?.completed ? '✓' : 'Marcar'}</button>
+        </div>
+      `).join('')}
+    </div>
+  `).join('') || '<div class="card"><p class="muted">Cargando lecciones…</p></div>';
+
+  $$('[data-complete]', body).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.complete;
+      const p = store.get('lessons') || {};
+      if (p[id]?.completed) return;
+      p[id] = { completed: true, completedAt: new Date().toISOString(), xpAwarded: 80 };
+      store.set('lessons', p);
+      addXP(80, 'Lección completada');
+      renderTab(body.parentElement);
+    });
+  });
+}
+
+function renderTips(body) {
+  const tips = window.SUNO?.data?.tips || [];
+  body.innerHTML = `
+    <div class="grid-3">
+      ${tips.map(t => `
+        <div class="card">
+          <div class="eyebrow">${t.category || 'TIP'}</div>
+          <h3 style="margin-top:8px;margin-bottom:var(--sp-2)">${t.title}</h3>
+          <p class="muted" style="font-size:var(--tx-small)">${t.body}</p>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function destroyAcademy() {}
+
+// EOF
+
+
+// === VIEW: COACH ===
+// ============================================================
+// SUNO ACADEMY · views/coach.js
+// Diagnóstico 5D + Mentor Note + Apply Fix & Earn
+// Ver SUNO-ACADEMY-SPEC.md §9
+// ============================================================
+
+
+
+
+
+const EXAMPLE = `[Intro]
+Synthwave track at 110 BPM, nostalgic and dreamy.
+Ethereal female vocal, breathy, intimate.
+Instruments: analog synth pads, driving bassline, clean electric guitar, soft drums.
+[Verse]
+Language: Spanish
+Theme: nostalgia de una ciudad perdida
+
+NO QUIERO: distorsión excesiva, voces procesadas, metal, reggaeton.`;
+
+function renderCoach(container) {
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">AI <span class="grad-text">Coach</span></h1>
+      <p class="section-lead">Diagnóstico profesional en 5 dimensiones. Identifica qué falta y aplica correcciones para subir tu score.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-5)">
+      <label class="field-label">Prompt a analizar</label>
+      <textarea class="textarea" id="coachInput" rows="10" placeholder="Pega aquí tu prompt de SUNO..."></textarea>
+      <div class="chip-row" style="margin-top:var(--sp-3)">
+        <button class="btn btn-primary" id="analyzeBtn">▶ Analizar</button>
+        <button class="btn btn-ghost" id="exampleBtn">Cargar ejemplo</button>
+        <button class="btn btn-tertiary btn-sm" id="clearBtn">Limpiar</button>
+      </div>
+    </div>
+
+    <div id="coachResults" hidden>
+      <div class="grid-2" style="margin-bottom:var(--sp-4)">
+        <div class="coach-score-card">
+          <div class="eyebrow">CURRENT BASE SCORE</div>
+          <div>
+            <span class="score-big" id="scoreBig">0</span>
+            <span class="score-slash">/</span>
+            <span class="score-total">100</span>
+          </div>
+          <div class="bar"><div class="bar-fill score" id="scoreBar" style="width:0%"></div></div>
+          <div class="cs-row">
+            <span class="cs-label">POTENTIAL</span>
+            <span class="cs-potential" id="potentialChip">↗ 100</span>
+          </div>
+        </div>
+
+        <div class="mentor-note">
+          <div class="eyebrow">🎓 COACH ANALYSIS</div>
+          <div class="mentor-note-title" id="mentorTitle">—</div>
+          <p class="muted" id="mentorBody" style="font-size:var(--tx-small);line-height:1.6">—</p>
+        </div>
+      </div>
+
+      <h2 style="margin-bottom:var(--sp-4)">Diagnostic Dimensions</h2>
+      <div id="dimensions" style="display:grid;gap:var(--sp-3)"></div>
+    </div>
+  `;
+
+  const input = $('#coachInput', container);
+
+  $('#exampleBtn', container).addEventListener('click', () => {
+    input.value = EXAMPLE;
+    analyze();
+  });
+  $('#clearBtn', container).addEventListener('click', () => {
+    input.value = '';
+    $('#coachResults', container).hidden = true;
+  });
+  $('#analyzeBtn', container).addEventListener('click', analyze);
+
+  function analyze() {
+    const text = input.value.trim();
+    if (!text) { toast('Ingresa un prompt', 'warn'); return; }
+    const res = analyzePrompt(text);
+    if (!res) { toast('Prompt demasiado corto', 'warn'); return; }
+
+    $('#coachResults', container).hidden = false;
+    $('#scoreBig', container).textContent = res.score;
+    $('#scoreBar', container).style.width = res.score + '%';
+    $('#potentialChip', container).textContent = `↗ ${Math.min(100, res.score + 20)}`;
+
+    const note = buildMentorNote(res, text);
+    $('#mentorTitle', container).textContent = note.title;
+    $('#mentorBody', container).textContent  = note.body;
+
+    const dims = buildDimensions(res, text);
+    const dimCon = $('#dimensions', container);
+    dimCon.innerHTML = '';
+    dims.forEach(d => {
+      const statusIcon = d.status === 'success' ? '✓' : d.status === 'warn' ? '◐' : '⚠';
+      const card = el('div', { class: `dim-row ${d.status}` });
+      card.innerHTML = `
+        <div class="dim-head">
+          <div class="dim-name"><span>${statusIcon}</span> ${d.name}</div>
+          <div class="dim-pct">${d.pct}%</div>
+        </div>
+        <div class="bar"><div class="bar-fill ${d.status === 'success' ? 'success' : 'score'}" style="width:${d.pct}%"></div></div>
+        <div class="dim-sub">${d.sub}</div>
+        ${d.skillGain ? `
+          <div class="skill-gain">
+            <div class="skill-gain-label">SKILL GAIN</div>
+            <div class="skill-gain-name">${d.skillGain.name} <span style="color:var(--success)">${d.skillGain.delta}</span></div>
+            <button class="btn btn-primary btn-sm" data-fix="${d.id}">✨ Aprender (+${d.skillGain.reward} CR)</button>
+          </div>` : ''}
+      `;
+      dimCon.appendChild(card);
+    });
+
+    dimCon.querySelectorAll('[data-fix]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        addXP(15, 'Coach fix aplicado');
+        toast('Correción estudiada. Aplícala a tu prompt manualmente.', 'success');
+      });
+    });
+  }
+}
+
+function destroyCoach() {}
+
+// EOF
+
+
+// === VIEW: PLAYBOOKS ===
+// ============================================================
+// SUNO ACADEMY · views/playbooks.js
+// Ver SUNO-ACADEMY-SPEC.md §10
+// ============================================================
+
+
+
+
+function renderPlaybooks(container) {
+  const pbs = window.SUNO?.data?.playbooks || [];
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Playbooks</h1>
+      <p class="section-lead">5 presets listos. Un clic carga el Studio con el preset completo, todos los campos y generación automática.</p>
+    </div>
+    <div class="playbook-grid">
+      ${pbs.map(pb => `
+        <div class="playbook-card">
+          <div>
+            <div class="eyebrow gold">${pb.level || 'PRO'}</div>
+            <div class="pb-title">${pb.title}</div>
+          </div>
+          <p class="pb-sum">${pb.summary}</p>
+          <div class="pb-meta">
+            ${pb.genre ? `<span class="chip data">${pb.genre}</span>` : ''}
+            ${pb.bpm   ? `<span class="chip data">${pb.bpm} BPM</span>` : ''}
+            ${pb.mood  ? `<span class="chip">${pb.mood}</span>` : ''}
+          </div>
+          <button class="btn btn-primary" data-apply="${pb.id}">▶ Aplicar al Studio</button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  container.querySelectorAll('[data-apply]').forEach(b => {
+    b.addEventListener('click', () => {
+      const pb = pbs.find(p => p.id === b.dataset.apply);
+      if (!pb) return;
+      sessionStorage.setItem('sa_pending_playbook', JSON.stringify(pb));
+      addXP(5, 'Playbook aplicado');
+      toast(`Aplicando "${pb.title}"...`, 'success');
+      setTimeout(() => { location.hash = '#/studio'; }, 200);
+    });
+  });
+}
+
+function destroyPlaybooks() {}
+
+// EOF
+
+
+// === VIEW: MAXMODE ===
+// ============================================================
+// SUNO ACADEMY · views/maxmode.js
+// Ver SUNO-ACADEMY-SPEC.md §11
+// ============================================================
+
+
+
+
+
+function renderMaxmode(container) {
+  const mm = window.SUNO?.data?.maxMode || {};
+  const codes = mm.codes || [];
+  const when  = mm.when  || {};
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Max <span class="grad-text">Mode</span></h1>
+      <p class="section-lead">Códigos exactos para llevar SUNO al límite. Copia, pega y cuida cuándo usarlos.</p>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h2>Biblioteca</h2>
+        ${codes.map(c => `
+          <div class="card" style="margin-bottom:var(--sp-3)">
+            <div class="output-head">
+              <span class="output-name">${c.name}</span>
+              <button class="btn btn-secondary btn-sm" data-code="${c.id}">Copiar</button>
+            </div>
+            <div class="mono-block">${(c.body || '').replace(/</g,'&lt;')}</div>
+            ${c.note ? `<p class="muted" style="font-size:var(--tx-small);margin-top:var(--sp-2)">${c.note}</p>` : ''}
+          </div>
+        `).join('') || '<p class="muted">Cargando códigos...</p>'}
+      </div>
+
+      <div>
+        <h2>Cuándo usarlo</h2>
+        ${['useful','careful','avoid','best'].map(k => {
+          const list = when[k];
+          if (!list) return '';
+          const label = { useful:'Útil', careful:'Cuidado', avoid:'No conviene', best:'Mejor práctica' }[k];
+          const color = { useful:'success', careful:'warn', avoid:'danger', best:'success' }[k];
+          return `
+            <div class="card" style="margin-bottom:var(--sp-3);border-left:3px solid var(--${color})">
+              <h3 style="margin-bottom:var(--sp-2);color:var(--${color})">${label}</h3>
+              <ul style="padding-left:18px;line-height:1.7;color:var(--text-2);margin:0">
+                ${list.map(i => `<li>${i}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  container.querySelectorAll('[data-code]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const c = codes.find(x => x.id === btn.dataset.code);
+      if (!c) return;
+      try {
+        await navigator.clipboard.writeText(c.body);
+        // XP solo una vez al día por código
+        const today = new Date().toDateString();
+        const key = `sa_maxmode_copied_${c.id}_${today}`;
+        if (!localStorage.getItem(key)) {
+          localStorage.setItem(key, '1');
+          addXP(5, `Max Mode copiado: ${c.name}`);
+        }
+        toast('Copiado ✓', 'success');
+      } catch { toast('No se pudo copiar', 'error'); }
+    });
+  });
+}
+
+function destroyMaxmode() {}
+
+// EOF
+
+
+// === VIEW: CHECKLIST ===
+// ============================================================
+// SUNO ACADEMY · views/checklist.js
+// Ver SUNO-ACADEMY-SPEC.md §12
+// ============================================================
+
+
+
+
+
+function renderChecklist(container) {
+  const checks = window.SUNO?.data?.checks || [];
+  const state = store.get('checklist') || {};
+
+  const completed = () => checks.filter(c => state[c.id]).length;
+  const total = () => checks.length;
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Professional Checklist</h1>
+      <p class="section-lead">10 criterios para validar cualquier prompt antes de generar en SUNO.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-4)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-2)">
+        <span class="muted">Progreso</span>
+        <span class="mono" id="clProgress">0/${total()}</span>
+      </div>
+      <div class="bar"><div class="bar-fill cool" id="clBar" style="width:0%"></div></div>
+    </div>
+
+    <div class="card">
+      ${checks.map(c => `
+        <label class="lesson-row" style="cursor:pointer">
+          <input type="checkbox" data-check="${c.id}" ${state[c.id]?'checked':''} style="width:20px;height:20px;accent-color:var(--primary)"/>
+          <div class="l-body">
+            <div class="l-name">${c.title}</div>
+            <div class="l-meta">${c.sub || ''}</div>
+          </div>
+        </label>
+      `).join('')}
+    </div>
+  `;
+
+  const refresh = () => {
+    const done = completed();
+    $('#clProgress', container).textContent = `${done}/${total()}`;
+    $('#clBar', container).style.width = (done/total()*100) + '%';
+    if (done === total()) {
+      toast('✦ Checklist completado', 'epic');
+      addXP(25, 'Checklist completado');
+    }
+  };
+
+  container.querySelectorAll('[data-check]').forEach(ck => {
+    ck.addEventListener('change', e => {
+      const id = ck.dataset.check;
+      const curr = store.get('checklist') || {};
+      curr[id] = e.target.checked;
+      store.set('checklist', curr);
+      refresh();
+    });
+  });
+
+  refresh();
+}
+
+function destroyChecklist() {}
+
+// EOF
+
+
+// === VIEW: ARENA ===
+// ============================================================
+// SUNO ACADEMY · views/arena.js
+// Ver SUNO-ACADEMY-SPEC.md §13
+// ============================================================
+
+
+
+let tickInterval = null;
+
+function renderArena(container) {
+  const ch = window.SUNO?.data?.challenge || {};
+  const meta = ch.meta || {};
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Arena</h1>
+      <p class="section-lead">Challenges semanales. Compite, escucha, aprende.</p>
+    </div>
+
+    <div class="arena-countdown">
+      <div class="cd-cell"><div class="cd-num" id="cdDays">--</div><div class="cd-label">días</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdHours">--</div><div class="cd-label">horas</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdMins">--</div><div class="cd-label">min</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdSecs">--</div><div class="cd-label">seg</div></div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="eyebrow gold">🏆 CHALLENGE SEMANAL</div>
+      <h2 style="margin-top:var(--sp-2);font-size:1.8rem">${ch.title || 'Cargando...'}</h2>
+      <p class="muted" style="margin-top:var(--sp-3);max-width:60ch">${ch.description || ''}</p>
+      <div class="challenge-prize">
+        <div class="challenge-prize-label">Prize Pool</div>
+        <div class="challenge-prize-value">${(ch.prizePool || 0).toLocaleString()} CR</div>
+      </div>
+      <div class="chip-row" style="margin-top:var(--sp-4)">
+        ${(meta.coreElements || []).map(e => `
+          <span class="chip data">${e.name} · ${e.weight}%</span>
+        `).join('')}
+      </div>
+      <div class="chip-row" style="margin-top:var(--sp-4)">
+        <a href="#/studio" class="btn btn-primary">▶ Entrar al Arena</a>
+        <button class="btn btn-ghost" disabled>Submit entry (coming soon)</button>
+      </div>
+    </div>
+
+    <h2>Top Contenders</h2>
+    ${(meta.topContenders || []).map((c, i) => `
+      <div class="top-contender">
+        <div class="tc-rank">#${i+1}</div>
+        <div class="tc-avatar"></div>
+        <div class="tc-body">
+          <div class="tc-name">${c.name} · <span style="color:var(--secondary)">${c.score.toLocaleString()}</span></div>
+          <div class="tc-track">${c.track}</div>
+          <div class="chip-row" style="margin-top:6px">
+            ${(c.tags || []).map(t => `<span class="chip data" style="font-size:10px">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('') || '<p class="muted">Sin contendientes aún.</p>'}
+  `;
+
+  if (ch.endsAt) startCountdown(ch.endsAt, container);
+}
+
+function startCountdown(endsAt, container) {
+  const end = new Date(endsAt).getTime();
+  const tick = () => {
+    const diff = Math.max(0, end - Date.now());
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    $('#cdDays',  container) && ($('#cdDays',  container).textContent = d);
+    $('#cdHours', container) && ($('#cdHours', container).textContent = String(h).padStart(2,'0'));
+    $('#cdMins',  container) && ($('#cdMins',  container).textContent = String(m).padStart(2,'0'));
+    $('#cdSecs',  container) && ($('#cdSecs',  container).textContent = String(s).padStart(2,'0'));
+  };
+  tick();
+  tickInterval = setInterval(tick, 1000);
+}
+
+function destroyArena() {
+  if (tickInterval) clearInterval(tickInterval);
+  tickInterval = null;
+}
+
+// EOF
+
+
+// === VIEW: PROFILE ===
+// ============================================================
+// SUNO ACADEMY · views/profile.js
+// Ver SUNO-ACADEMY-SPEC.md §14
+// ============================================================
+
+
+
+
+
+function renderProfile(container) {
+  const profile = store.get('profile');
+  const stats   = store.get('stats');
+  const badges  = store.get('badges') || {};
+  const history = store.get('history') || [];
+  const badgesData = window.SUNO?.data?.badges || [];
+  const { lv, next, pct } = getLevel(stats.xp);
+
+  const avg = stats.prompts > 0 ? stats.scoreSum / stats.prompts : 0;
+  const dna = {
+    melody:       Math.min(100, Math.round(avg * 1.05)),
+    structure:    Math.min(100, Math.round(avg)),
+    originality:  Math.min(100, Math.round((new Set(history.map(h => h.genre)).size) * 15)),
+    precision:    Math.min(100, Math.round(avg * 0.95))
+  };
+
+  const topHits = [...history].sort((a,b) => (b.score||0)-(a.score||0)).slice(0, 10);
+
+  container.innerHTML = `
+    <div class="section-head">
+      <h1 class="section-title">Profile</h1>
+    </div>
+
+    <div class="profile-head">
+      <div class="profile-avatar">${(profile.name||'A').charAt(0)}</div>
+      <div class="eyebrow profile-tag">${lv.name}</div>
+      <div class="profile-name">${profile.name}</div>
+      <p class="profile-bio">${profile.bio}</p>
+      <div class="chip-row" style="justify-content:center;margin-top:var(--sp-3)">
+        <span class="chip data">Nivel ${stats.level}</span>
+        <span class="chip data">${stats.xp.toLocaleString()} XP</span>
+        <span class="chip data">${stats.prompts} prompts</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-4)">
+      <h2 class="card-title">Prompt DNA</h2>
+      <div class="dna-row"><span class="dna-name">Melody Crafting</span><div class="dna-bar bar"><div class="bar-fill cool" style="width:${dna.melody}%"></div></div><span class="dna-pct">${dna.melody}</span></div>
+      <div class="dna-row"><span class="dna-name">Structural Complexity</span><div class="dna-bar bar"><div class="bar-fill" style="width:${dna.structure}%"></div></div><span class="dna-pct">${dna.structure}</span></div>
+      <div class="dna-row"><span class="dna-name">Originality Score</span><div class="dna-bar bar"><div class="bar-fill warm" style="width:${dna.originality}%"></div></div><span class="dna-pct">${dna.originality}</span></div>
+      <div class="dna-row"><span class="dna-name">Metatag Precision</span><div class="dna-bar bar"><div class="bar-fill cool" style="width:${dna.precision}%"></div></div><span class="dna-pct">${dna.precision}</span></div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-4)">
+      <h2 class="card-title">Next Evolution</h2>
+      ${next ? `
+        <p class="muted">${lv.name} → <strong>${next.name}</strong></p>
+        <div class="bar"><div class="bar-fill" style="width:${pct.toFixed(0)}%"></div></div>
+        <p class="muted" style="font-size:var(--tx-small);margin-top:var(--sp-2)">${(next.min - stats.xp).toLocaleString()} XP restantes</p>
+      ` : `<p class="muted">🏆 Nivel máximo alcanzado — ${lv.name}</p>`}
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-4)">
+      <h2 class="card-title">Mastered Techniques</h2>
+      <div class="chip-row">
+        ${badgesData.map(b => `
+          <span class="badge-chip ${badges[b.id] ? 'earned' : ''}">${badges[b.id] ? '🏅' : '🔒'} ${b.name}</span>
+        `).join('') || '<p class="muted">Sin badges aún.</p>'}
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-4)">
+      <h2 class="card-title">Hall of Fame</h2>
+      ${topHits.length === 0 ? '<p class="muted">Tu mejor prompt aparecerá aquí.</p>' :
+        topHits.map((h, i) => `
+          <div class="top-contender">
+            <div class="tc-rank">#${i+1}</div>
+            <div class="tc-avatar"></div>
+            <div class="tc-body">
+              <div class="tc-name">${h.genre || '—'} · <span style="color:var(--secondary)">${h.score || 0}</span></div>
+              <div class="tc-track">${(h.full || '').substring(0, 80)}...</div>
+            </div>
+          </div>
+        `).join('')}
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">Datos y cuenta</h2>
+      <div class="chip-row">
+        <button class="btn btn-ghost" id="exportBtn">💾 Exportar progreso</button>
+        <label class="btn btn-ghost" style="cursor:pointer">
+          📂 Importar <input type="file" accept="application/json" id="importInput" hidden/>
+        </label>
+        <button class="btn btn-danger" id="resetBtn">🔥 Reiniciar cuenta</button>
+      </div>
+    </div>
+  `;
+
+  $('#exportBtn', container).addEventListener('click', () => {
+    const data = store.export();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `suno-academy-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    toast('Progreso exportado', 'success');
+  });
+
+  $('#importInput', container).addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (store.import(data)) {
+        toast('Progreso importado. Recargando...', 'success');
+        setTimeout(() => location.reload(), 800);
+      }
+    } catch { toast('Archivo inválido', 'error'); }
+  });
+
+  $('#resetBtn', container).addEventListener('click', () => {
+    if (!confirm('¿Reiniciar cuenta? Se perderán XP, prompts, misiones y badges.')) return;
+    if (!confirm('Esta acción es irreversible. ¿Confirmas?')) return;
+    store.clearAll();
+    location.reload();
+  });
+}
+
+function destroyProfile() {}
+
+// EOF
+
+
+// === ROUTER ===
+
+// ============================================================
+// ROUTER INLINE — sin dynamic imports
+// ============================================================
+
+const VIEW_RENDERERS = {
+  dashboard: renderDashboard,
+  studio:    renderStudio,
+  academy:   renderAcademy,
+  coach:     renderCoach,
+  playbooks: renderPlaybooks,
+  maxmode:   renderMaxmode,
+  checklist: renderChecklist,
+  arena:     renderArena,
+  profile:   renderProfile
+};
+
+let _currentRoute = null;
+let _currentDestroy = null;
+
+const VIEW_DESTROYERS = {
+  dashboard: destroyDashboard,
+  studio:    destroyStudio,
+  academy:   destroyAcademy,
+  coach:     destroyCoach,
+  playbooks: destroyPlaybooks,
+  maxmode:   destroyMaxmode,
+  checklist: destroyChecklist,
+  arena:     destroyArena,
+  profile:   destroyProfile
+};
+
+function navigate(route) {
+  location.hash = '#/' + route;
+}
+
+function renderRoute() {
+  // Parsear hash: #/route?param=value
+  const raw  = location.hash || '#/dashboard';
+  const withoutHash = raw.slice(2); // quitar '#/'
+  const [routePart, queryStr] = withoutHash.split('?');
+  const route = routePart || 'dashboard';
+
+  // Parsear query string simple
+  const query = {};
+  if (queryStr) {
+    queryStr.split('&').forEach(pair => {
+      const [k, v] = pair.split('=');
+      if (k) query[decodeURIComponent(k)] = decodeURIComponent(v || '');
+    });
+  }
+
+  // Destruir vista anterior
+  if (_currentDestroy) {
+    try { _currentDestroy(); } catch (e) { console.warn('[router] destroy error:', e); }
+    _currentDestroy = null;
+  }
+
+  // Ocultar todas las vistas, mostrar la activa
+  document.querySelectorAll('.view').forEach(v => v.hidden = true);
+  const target = document.getElementById('view-' + route);
+  if (target) target.hidden = false;
+
+  // Actualizar nav links activos
+  document.querySelectorAll('[data-route]').forEach(link => {
+    link.classList.toggle('active', link.dataset.route === route);
+  });
+
+  // Llamar renderer
+  const renderer = VIEW_RENDERERS[route];
+  if (renderer && target) {
+    try {
+      renderer(target, query);
+      _currentDestroy = VIEW_DESTROYERS[route] || null;
+    } catch (e) {
+      console.error('[router] Error en vista ' + route + ':', e);
+      target.innerHTML = '<div class="card" style="margin:var(--sp-6)"><h2>Error al cargar la vista</h2><p class="muted">' + e.message + '</p></div>';
+    }
+  } else if (!target) {
+    console.warn('[router] No existe contenedor para ruta:', route);
+    // Fallback al dashboard
+    const dash = document.getElementById('view-dashboard');
+    if (dash) { dash.hidden = false; renderDashboard(dash); }
+  }
+
+  // Guardar última ruta en store
+  try { store.set('lastRoute', route); } catch(e) {}
+
+  // Cerrar sidebar móvil al navegar
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.classList.remove('open');
+
+  _currentRoute = route;
+}
+
+function initRouter() {
+  window.addEventListener('hashchange', renderRoute);
+
+  // Menu btn móvil
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  if (menuBtn && sidebar) {
+    menuBtn.hidden = false;
+    menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  }
+
+  // Ruta inicial
+  if (!location.hash || location.hash === '#') {
+    const last = (function() { try { return store.get('lastRoute'); } catch(e) { return null; } })();
+    location.hash = '#/' + (last || 'dashboard');
+  } else {
+    renderRoute();
+  }
+}
+
+
+// === BOOT ===
+
+// ============================================================
+// BOOT
+// ============================================================
+window.SUNO = { data: SUNO_DATA, ready: false };
+
+try { ensureSchema(); } catch(e) { console.error('[boot] ensureSchema:', e); }
+try { initGamification(); } catch(e) { console.error('[boot] initGamification:', e); }
+try { initBackgroundWaves(document.getElementById('bgc')); } catch(e) { console.warn('[boot] waves:', e); }
+try { initRouter(); } catch(e) { console.error('[boot] initRouter:', e); }
+
+window.SUNO.ready = true;
+window.navigate = navigate;
+
+
+</script>
 </body>
 </html>

@@ -25,7 +25,7 @@ suno-academy/
 ├── index.html                  # Único entry point. Navegación por secciones (no por páginas).
 ├── 404.html                    # Redirige a index.html para que las rutas hash funcionen.
 ├── README.md                   # Qué es, cómo correrlo local, cómo desplegar.
-├── LICENSE                     # MIT (autor: GGLabs / Alejandro Cosulich)
+├── LICENSE                     # MIT (autor: GGLabs)
 ├── .gitignore                  # node_modules, .DS_Store, .env*, dist/
 ├── .nojekyll                   # Archivo vacío. Necesario para GitHub Pages con guiones bajos.
 ├── CNAME                       # Opcional — solo si hay dominio propio.
@@ -639,7 +639,7 @@ El V1 **no necesita ninguna de estas**. El valor está en la combinación: motor
 ## 24. Contacto y créditos
 
 - **Proyecto:** SUNO ACADEMY
-- **Autor:** Alejandro Cosulich — GGLabs
+- **Autor:** GGLabs
 - **GitHub:** Univers77/suno-academy
 - **Versión del documento:** 1.0 — 2026-04-18
 - **Licencia:** MIT para el código; el contenido (videos, tips, playbooks) es curatorial y permanece bajo autoría GGLabs.

@@ -84,4 +84,4 @@ Ver `SUNO-ACADEMY-SPEC.md` §15.
 
 ## Licencia
 
-MIT — Alejandro Cosulich / GGLabs, 2026.
+MIT — GGLabs, 2026.
