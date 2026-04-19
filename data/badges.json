@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    { "id": "BG-FIRST",          "name": "Primer Prompt",       "description": "Generaste tu primer prompt.",                           "rule": { "event": "prompt",        "threshold": 1 } },
+    { "id": "BG-SCORE-100",      "name": "Perfección Absoluta", "description": "Lograste score 100.",                                    "rule": { "event": "score",         "threshold": 100 } },
+    { "id": "BG-STREAK-7",       "name": "Una Semana",          "description": "7 días consecutivos creando.",                          "rule": { "event": "streak",        "threshold": 7 } },
+    { "id": "BG-MAX-MASTER",     "name": "Max Master",          "description": "Copiaste los 3 códigos Max Mode.",                      "rule": { "event": "maxcopy",       "threshold": 3 } },
+    { "id": "BG-ACADEMY-GRAD",   "name": "Graduado Academy",    "description": "Viste los 28 videos.",                                   "rule": { "event": "videos",        "threshold": 28 } },
+    { "id": "BG-PLAYBOOK-PRO",   "name": "Playbook Pro",        "description": "Aplicaste los 5 playbooks.",                             "rule": { "event": "playbooks",     "threshold": 5 } },
+    { "id": "BG-CHECKLIST-5",    "name": "Checklist Champ",     "description": "Completaste el checklist 5 veces.",                     "rule": { "event": "checklist",     "threshold": 5 } },
+    { "id": "BG-GENRE-EXPLORER", "name": "Explorador",          "description": "Usaste 8 géneros distintos.",                            "rule": { "event": "genres",        "threshold": 8 } },
+    { "id": "BG-DNA-PERFECT",    "name": "DNA Perfecto",        "description": "Tu DNA creativo en 4 dimensiones ≥ 90%.",                "rule": { "event": "dna",           "threshold": 90 } },
+    { "id": "BG-ARENA-RUNNER",   "name": "Gladiador",           "description": "Entraste al menos a 1 challenge.",                       "rule": { "event": "arena",         "threshold": 1 } },
+    { "id": "BG-MISSION-ALL",    "name": "Misión Cumplida",     "description": "Completaste las 6 misiones.",                           "rule": { "event": "missions-all",  "threshold": 6 } },
+    { "id": "BG-LEGEND",         "name": "Legend",              "description": "Alcanzaste nivel LEGEND (25,000 XP).",                  "rule": { "event": "level",         "threshold": 9 } }
+  ]
+}

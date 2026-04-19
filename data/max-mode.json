@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "codes": [
+    {
+      "id": "style-max",
+      "name": "Style Max Mode",
+      "body": "ULTRA-HIGH FIDELITY PRODUCTION, studio-grade mixing, pristine mastering, wide dynamic range, punchy low-end, crystal-clear highs, professional stereo imaging, analog warmth, zero artifacts",
+      "note": "Para productores que buscan calidad comercial máxima."
+    },
+    {
+      "id": "vocal-max",
+      "name": "Vocal Max Mode",
+      "body": "BROADCAST-QUALITY VOCAL, pristine recording, intimate close-mic presence, natural breath, zero autotune artifacts, professional de-essing, warm tonal body, silky high-end, controlled dynamics",
+      "note": "Calidad radio/streaming profesional. Usar con voces solo-cantadas."
+    },
+    {
+      "id": "duet-base",
+      "name": "Duet Mode (base)",
+      "body": "DUET STRUCTURE: lead vocal + harmony vocal, male and female, panned left and right, harmonized thirds and fifths, call-and-response arrangement, distinct timbres, balanced mix",
+      "note": "Para dúos clásicos con separación estéreo clara."
+    }
+  ],
+  "when": {
+    "useful":  [
+      "Cuando ya dominas el builder básico",
+      "Producciones comerciales para clientes",
+      "Tracks con vocal principal destacada",
+      "Mezclas que necesitan rango dinámico real"
+    ],
+    "careful": [
+      "En géneros lo-fi donde la suciedad es intencional",
+      "Con voces muy distorsionadas o efectadas",
+      "Tracks experimentales o ambient puros"
+    ],
+    "avoid":   [
+      "Si tu prompt base es muy débil (< score 40)",
+      "Cuando buscas un sonido 'crudo' o garage",
+      "Tracks instrumentales sin vocal principal (Vocal Max Mode no aplica)"
+    ],
+    "best":    [
+      "Combinar Style Max + Vocal Max en trap y pop comercial",
+      "Para sesiones de portfolio profesional",
+      "Extensión de tracks ya validados para limpieza final"
+    ]
+  }
+}

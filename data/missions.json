@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    {
+      "id": "m01",
+      "level": 1,
+      "title": "Prompt estructurado básico",
+      "description": "Crea un prompt con al menos 3 metatags de estructura y score ≥ 60.",
+      "xp": 15,
+      "tokens": 80,
+      "template": "[Intro][Verse][Chorus][Verse][Chorus][Outro]\nGenre: __GENRE__\nBPM: 110\nMood: melancholic\nVocal: intimate female, breathy\nInstruments: piano, soft drums, bass\nLanguage: Spanish"
+    },
+    {
+      "id": "m02",
+      "level": 1,
+      "title": "Negativos bien definidos",
+      "description": "Incluye al menos 3 bloqueos con 'NO QUIERO' en tu prompt.",
+      "xp": 20,
+      "tokens": 100
+    },
+    {
+      "id": "m03",
+      "level": 2,
+      "title": "Score ≥ 85",
+      "description": "Alcanza un score de 85 o más en el Coach analizando tu prompt.",
+      "xp": 25,
+      "tokens": 150
+    },
+    {
+      "id": "m04",
+      "level": 2,
+      "title": "Descriptor vocal completo",
+      "description": "Escribe un descriptor vocal con al menos 4 palabras (ej: ethereal female, breathy, intimate).",
+      "xp": 30,
+      "tokens": 150
+    },
+    {
+      "id": "m05",
+      "level": 3,
+      "title": "Max Mode aplicado",
+      "description": "Genera un prompt usando al menos un código Max Mode completo.",
+      "xp": 40,
+      "tokens": 250
+    },
+    {
+      "id": "m06",
+      "level": 3,
+      "title": "Prompt perfecto",
+      "description": "Alcanza score 100 en el Coach.",
+      "xp": 50,
+      "tokens": 400
+    }
+  ]
+}

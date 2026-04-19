@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    { "id": "depth-bass",    "label": "Depth Bass",    "text": "bass depth max, sub-bass presence, 40Hz low-end" },
+    { "id": "punch-drums",   "label": "Punch Drums",   "text": "punchy drums, tight kick, compressed snare, clear transients" },
+    { "id": "stereo-wide",   "label": "Wide Stereo",   "text": "wide stereo field, hard-panned guitars, immersive soundscape" },
+    { "id": "warmth-tape",   "label": "Tape Warmth",   "text": "analog tape warmth, subtle saturation, vinyl texture" },
+    { "id": "dynamics",      "label": "Dynamic Range", "text": "wide dynamic range, breath between sections, pianissimo to fortissimo" },
+    { "id": "clarity-mix",   "label": "Mix Clarity",   "text": "clean mix, balanced EQ, no muddy mids, crystal clear high end" }
+  ]
+}

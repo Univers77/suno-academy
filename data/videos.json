@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "_note": "Claude Code: reemplazar con los 28 videos exactos del documento de GG. Timestamps en segundos. Esta es la estructura.",
+  "items": [
+    {
+      "id": "v01",
+      "title": "Suno AI v4.5 — Guía completa de prompting",
+      "source": "YouTube Oficial",
+      "youtubeId": "dQw4w9WgXcQ",
+      "categories": ["base", "workflow"],
+      "duration": "14:22",
+      "timestamps": [
+        { "label": "Intro",                 "seconds": 0   },
+        { "label": "Style Field vs Lyrics", "seconds": 135 },
+        { "label": "Metatags esenciales",   "seconds": 340 },
+        { "label": "BPM y timing",          "seconds": 510 },
+        { "label": "Negativos",             "seconds": 720 }
+      ]
+    },
+    {
+      "id": "v02",
+      "title": "Max Mode — cómo llevar SUNO al límite",
+      "source": "Canal Max Studio",
+      "youtubeId": "dQw4w9WgXcQ",
+      "categories": ["maxmode", "tecnica"],
+      "duration": "9:45",
+      "timestamps": [
+        { "label": "Qué es Max Mode",   "seconds": 0   },
+        { "label": "Style Max Mode",    "seconds": 120 },
+        { "label": "Vocal Max Mode",    "seconds": 280 },
+        { "label": "Duet Mode",         "seconds": 440 }
+      ]
+    },
+    {
+      "id": "v03",
+      "title": "Estrategia viral con SUNO: 5 hooks que funcionan",
+      "source": "GGLabs",
+      "youtubeId": "dQw4w9WgXcQ",
+      "categories": ["viral", "letras"],
+      "duration": "11:30",
+      "timestamps": [
+        { "label": "Hook de 3 segundos", "seconds": 0   },
+        { "label": "Estructura viral",    "seconds": 200 }
+      ]
+    }
+  ]
+}

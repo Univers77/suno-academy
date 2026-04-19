@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "id": "cyberpunk-synthwave-2026-04",
+  "title": "Cyberpunk Synthwave Challenge",
+  "description": "Crea el track definitivo de conducción distópica. Buscamos bajos agresivos, sintes arpegiados y un beat pesado que grite 2077.",
+  "endsAt": "2026-04-30T23:59:59Z",
+  "prizePool": 50000,
+  "rewardBadge": "Neon Driver",
+  "meta": {
+    "coreElements": [
+      { "name": "[Neon Synth]",   "weight": 85 },
+      { "name": "[Driving Bass]", "weight": 70 },
+      { "name": "[Arp Lead]",     "weight": 60 }
+    ],
+    "topContenders": [
+      { "name": "NeonPulse",    "score": 9450, "track": "Night City Runner", "tags": ["AGGRESSIVE ARP", "110 BPM"] },
+      { "name": "SynthWeaver",  "score": 9120, "track": "Chrome Overdrive",  "tags": ["DISTORTED KICK", "115 BPM"] },
+      { "name": "DataStream",   "score": 8890, "track": "Holo Heart",        "tags": ["DREAMY PAD", "105 BPM"] }
+    ]
+  }
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0c0e12" />
+<meta name="description" content="SUNO ACADEMY — Aprende, domina y compite usando Suno AI. Motor de prompts, academia de videos con timestamps, coach de diagnóstico, playbooks, Max Mode y gamificación completa. GGLabs Bolivia." />
+<meta property="og:title" content="SUNO ACADEMY" />
+<meta property="og:description" content="La academia definitiva para dominar Suno AI — motor de prompts, videos, coach de diagnóstico y gamificación." />
+<meta property="og:image" content="assets/img/og-cover.png" />
+<meta property="og:type" content="website" />
+<title>SUNO ACADEMY · Kinetic Studio</title>
+
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+<link rel="manifest" href="manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/tokens.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/layout.css" />
+<link rel="stylesheet" href="assets/css/components.css" />
+<link rel="stylesheet" href="assets/css/sections.css" />
+</head>
+<body>
+
+<!-- Background canvas (ondas sutiles) -->
+<canvas id="bgc" aria-hidden="true"></canvas>
+
+<!-- Topbar -->
+<header class="topbar" role="banner">
+  <div class="topbar-inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" hidden>
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a class="brand" href="#/dashboard">
+      <span class="brand-avatar" aria-hidden="true">A</span>
+      <span class="brand-text">SUNO <span class="brand-accent">ACADEMY</span></span>
+    </a>
+    <div class="topbar-right">
+      <button class="credit-chip" id="creditChip" aria-label="Créditos disponibles">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1"/></svg>
+        <span id="creditValue">500</span> CR
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Shell principal: sidebar + main -->
+<div class="shell">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <nav>
+      <a href="#/dashboard" class="nav-link" data-route="dashboard">
+        <span class="nav-icon" aria-hidden="true">⬡</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="#/studio" class="nav-link" data-route="studio">
+        <span class="nav-icon" aria-hidden="true">🎛</span>
+        <span>Studio</span>
+      </a>
+      <a href="#/academy" class="nav-link" data-route="academy">
+        <span class="nav-icon" aria-hidden="true">◈</span>
+        <span>Academy</span>
+      </a>
+      <a href="#/coach" class="nav-link" data-route="coach">
+        <span class="nav-icon" aria-hidden="true">🧠</span>
+        <span>Coach</span>
+      </a>
+      <a href="#/playbooks" class="nav-link" data-route="playbooks">
+        <span class="nav-icon" aria-hidden="true">⚡</span>
+        <span>Playbooks</span>
+      </a>
+      <div class="nav-sep"></div>
+      <a href="#/maxmode" class="nav-link" data-route="maxmode">
+        <span class="nav-icon" aria-hidden="true">🔥</span>
+        <span>Max Mode</span>
+      </a>
+      <a href="#/checklist" class="nav-link" data-route="checklist">
+        <span class="nav-icon" aria-hidden="true">✦</span>
+        <span>Checklist</span>
+      </a>
+      <a href="#/arena" class="nav-link" data-route="arena">
+        <span class="nav-icon" aria-hidden="true">🎮</span>
+        <span>Arena</span>
+      </a>
+      <a href="#/profile" class="nav-link" data-route="profile">
+        <span class="nav-icon" aria-hidden="true">👤</span>
+        <span>Profile</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <small class="muted">v1.0 · GGLabs</small>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main id="main" class="main" role="main">
+
+    <!-- Dashboard (default) -->
+    <section class="view" id="view-dashboard" data-view="dashboard" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando dashboard…</p>
+      </div>
+    </section>
+
+    <!-- Studio -->
+    <section class="view" id="view-studio" data-view="studio" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Inicializando Synthesis Engine…</p>
+      </div>
+    </section>
+
+    <!-- Academy -->
+    <section class="view" id="view-academy" data-view="academy" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando academia…</p>
+      </div>
+    </section>
+
+    <!-- Coach -->
+    <section class="view" id="view-coach" data-view="coach" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Preparando diagnóstico…</p>
+      </div>
+    </section>
+
+    <!-- Playbooks -->
+    <section class="view" id="view-playbooks" data-view="playbooks" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando playbooks…</p>
+      </div>
+    </section>
+
+    <!-- Max Mode -->
+    <section class="view" id="view-maxmode" data-view="maxmode" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando Max Mode…</p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="view" id="view-checklist" data-view="checklist" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando checklist…</p>
+      </div>
+    </section>
+
+    <!-- Arena -->
+    <section class="view" id="view-arena" data-view="arena" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Entrando al arena…</p>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section class="view" id="view-profile" data-view="profile" hidden>
+      <div class="loading-placeholder">
+        <div class="ring-ph"></div>
+        <p class="muted">Cargando identidad creativa…</p>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- Bottom Nav (mobile) -->
+<nav class="bottom-nav" aria-label="Navegación móvil">
+  <a href="#/dashboard" class="bn-link" data-route="dashboard">
+    <span class="bn-icon" aria-hidden="true">⬡</span>
+    <span class="bn-label">Dashboard</span>
+  </a>
+  <a href="#/studio" class="bn-link" data-route="studio">
+    <span class="bn-icon" aria-hidden="true">🧪</span>
+    <span class="bn-label">Lab</span>
+  </a>
+  <a href="#/academy" class="bn-link" data-route="academy">
+    <span class="bn-icon" aria-hidden="true">◈</span>
+    <span class="bn-label">Academy</span>
+  </a>
+  <a href="#/arena" class="bn-link" data-route="arena">
+    <span class="bn-icon" aria-hidden="true">🎮</span>
+    <span class="bn-label">Arena</span>
+  </a>
+  <a href="#/profile" class="bn-link" data-route="profile">
+    <span class="bn-icon" aria-hidden="true">👤</span>
+    <span class="bn-label">Profile</span>
+  </a>
+</nav>
+
+<!-- Toast container -->
+<div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Module loader -->
+<script type="module" src="assets/js/app.js"></script>
+
+</body>
+</html>

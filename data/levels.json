@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    { "min": 0,     "name": "RECRUIT" },
+    { "min": 300,   "name": "BEATMAKER" },
+    { "min": 800,   "name": "PRODUCER" },
+    { "min": 1800,  "name": "ARCHITECT" },
+    { "min": 3500,  "name": "ENGINEER" },
+    { "min": 6000,  "name": "COMPOSER" },
+    { "min": 10000, "name": "DIRECTOR" },
+    { "min": 16000, "name": "MAESTRO" },
+    { "min": 25000, "name": "LEGEND" },
+    { "min": 40000, "name": "SONIC ARCHITECT" }
+  ]
+}

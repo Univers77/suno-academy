@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    { "id": "ck01", "title": "Género específico declarado", "sub": "Ej: 'Dark synthwave' en vez de solo 'electronic'" },
+    { "id": "ck02", "title": "BPM exacto (no rango)",        "sub": "Un solo número. 110 bpm, no 100-120 bpm" },
+    { "id": "ck03", "title": "Al menos 3 metatags de estructura", "sub": "[Intro], [Verse], [Chorus] como mínimo" },
+    { "id": "ck04", "title": "Descriptor vocal completo",    "sub": "4 palabras mínimo (ethereal female, breathy, intimate)" },
+    { "id": "ck05", "title": "2-4 adjetivos emocionales",    "sub": "Ni plano ni contradictorio" },
+    { "id": "ck06", "title": "Instrumentos principales (1-3)", "sub": "Con adjetivos de textura" },
+    { "id": "ck07", "title": "NO QUIERO con 3+ items",        "sub": "Bloquea sesgos frecuentes de SUNO" },
+    { "id": "ck08", "title": "Idioma explícito",             "sub": "Language: Spanish / English / Instrumental" },
+    { "id": "ck09", "title": "Tema o visión narrativa",      "sub": "1 frase que describe el 'mundo' del track" },
+    { "id": "ck10", "title": "80-160 palabras totales",      "sub": "Sweet spot para SUNO" }
+  ]
+}

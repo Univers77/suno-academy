@@ -1,0 +1,30 @@
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editores
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+
+# Node (no se usa en este proyecto — si llegase a aparecer, ignorar)
+node_modules/
+package-lock.json
+yarn.lock
+bun.lockb
+dist/
+build/
+
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Temporales Claude
+.claude/
+scratch/

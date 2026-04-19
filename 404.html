@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirigiendo... · SUNO ACADEMY</title>
+<script>
+  // GitHub Pages 404 trick: preservar ruta hash al redirigir
+  var path = location.pathname;
+  var base = path.split('/').slice(0, 2).join('/');
+  var hash = path.slice(base.length + 1).replace(/\//g, '-');
+  location.replace(base + '/' + (hash ? '#/' + hash : ''));
+</script>
+</head>
+<body style="background:#0c0e12;color:#eaf2ff;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0">
+  <div style="text-align:center">
+    <h1>Redirigiendo...</h1>
+    <p><a href="./" style="color:#cf96ff">Volver al inicio</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "modules": [
+    {
+      "id": "mod-1", "tag": "MÓDULO 1", "title": "Fundamentos de SUNO",
+      "lessons": [
+        { "id": "L1", "title": "Anatomía de un prompt SUNO",  "level": "beginner", "durationMin": 8,  "xp": 60, "videoRef": "v01" },
+        { "id": "L2", "title": "Style Field vs Lyrics Field", "level": "beginner", "durationMin": 10, "xp": 80, "videoRef": "v01" },
+        { "id": "L3", "title": "Metatags de estructura",      "level": "beginner", "durationMin": 7,  "xp": 60 },
+        { "id": "L4", "title": "BPM y selección de género",   "level": "beginner", "durationMin": 9,  "xp": 80 }
+      ]
+    },
+    {
+      "id": "mod-2", "tag": "MÓDULO 2", "title": "Max Mode y control avanzado",
+      "lessons": [
+        { "id": "L5", "title": "Style Max Mode",            "level": "intermediate", "durationMin": 12, "xp": 120, "videoRef": "v02" },
+        { "id": "L6", "title": "Vocal Max Mode",            "level": "intermediate", "durationMin": 10, "xp": 100, "videoRef": "v02" },
+        { "id": "L7", "title": "Duet Mode arquitectura",    "level": "advanced",     "durationMin": 14, "xp": 160 },
+        { "id": "L8", "title": "Inyectores profesionales",  "level": "advanced",     "durationMin": 11, "xp": 140 }
+      ]
+    },
+    {
+      "id": "mod-3", "tag": "MÓDULO 3", "title": "Estrategia viral",
+      "lessons": [
+        { "id": "L9",  "title": "Hooks de 3 segundos",          "level": "intermediate", "durationMin": 9,  "xp": 100, "videoRef": "v03" },
+        { "id": "L10", "title": "Estructura para shorts/reels", "level": "intermediate", "durationMin": 11, "xp": 120 },
+        { "id": "L11", "title": "Letras que retienen",          "level": "intermediate", "durationMin": 13, "xp": 140 },
+        { "id": "L12", "title": "Cadencias para TikTok",        "level": "advanced",     "durationMin": 10, "xp": 120 }
+      ]
+    },
+    {
+      "id": "mod-4", "tag": "MÓDULO 4", "title": "Producción avanzada",
+      "lessons": [
+        { "id": "L13", "title": "Workflow profesional",    "level": "advanced", "durationMin": 15, "xp": 200 },
+        { "id": "L14", "title": "Persona para consistencia","level": "advanced", "durationMin": 12, "xp": 160 },
+        { "id": "L15", "title": "Extend sin deriva",       "level": "advanced", "durationMin": 13, "xp": 180 },
+        { "id": "L16", "title": "Cover y regeneración",    "level": "advanced", "durationMin": 14, "xp": 200 }
+      ]
+    }
+  ]
+}

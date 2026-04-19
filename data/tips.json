@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "items": [
+    { "id": "t01", "category": "STRUCTURE", "title": "Metatags son obligatorios", "body": "Sin [Intro], [Verse], [Chorus], SUNO decide al azar la estructura. Siempre incluye al menos 3 metatags para controlar el flujo narrativo." },
+    { "id": "t02", "category": "STRUCTURE", "title": "Añade [Bridge] en canciones >2min", "body": "El bridge rompe la monotonía. Sin él, SUNO tiende a repetir el chorus de forma predecible y el oyente se aburre." },
+    { "id": "t03", "category": "SPEC", "title": "BPM exacto, no rango", "body": "Escribe '140 bpm', no '130-150 bpm'. SUNO interpreta rangos como incertidumbre y genera ritmos inconsistentes." },
+    { "id": "t04", "category": "SPEC", "title": "Menciona 3 instrumentos máximo", "body": "Más de 3 instrumentos confunde al modelo. Concéntrate en el bajo, la percusión y un melódico principal." },
+    { "id": "t05", "category": "EMOTION", "title": "2 emociones mínimo, 4 máximo", "body": "Una sola emoción es plana. Más de cuatro crea tensión contradictoria. Rango óptimo: 2-4 adjetivos emocionales complementarios." },
+    { "id": "t06", "category": "EMOTION", "title": "Adjetivos sensoriales > clichés", "body": "'Gritty, distant, shimmering' activa más vectores que 'triste, feliz, épico'. Piensa en texturas, no en estados genéricos." },
+    { "id": "t07", "category": "VOCAL", "title": "Descriptor vocal completo", "body": "No basta 'female'. Escribe 'ethereal female, breathy, intimate, slight reverb'. 4 palabras mínimo para control vocal real." },
+    { "id": "t08", "category": "VOCAL", "title": "'Instrumental only' bloquea voces", "body": "Si quieres un track sin voz, escribe literal 'instrumental only, no vocals' en el Style Field. Solo 'instrumental' a veces falla." },
+    { "id": "t09", "category": "NEGATIVES", "title": "NO QUIERO: 3 items mínimo", "body": "Declara qué NO quieres. SUNO tiene sesgos por estilo; sin bloqueos, mete distorsión, crowd noise y reverb excesivo por default." },
+    { "id": "t10", "category": "NEGATIVES", "title": "Bloquea 'distorsión excesiva'", "body": "Si quieres limpieza tonal, 'NO distorsión excesiva, NO clipping, NO saturación agresiva' es una tríada efectiva." },
+    { "id": "t11", "category": "LENGTH", "title": "80-160 palabras es el sweet spot", "body": "Menos de 50 es insuficiente; más de 200 diluye atención. El óptimo para SUNO está entre 80 y 160 palabras en total." },
+    { "id": "t12", "category": "WORKFLOW", "title": "Genera 3 versiones y quédate con 1", "body": "SUNO es estocástico. Genera siempre 3 veces el mismo prompt, elige la mejor y descarta las otras 2. Nunca quedes con la primera." },
+    { "id": "t13", "category": "WORKFLOW", "title": "Usa Persona para consistencia", "body": "Si quieres varias canciones con la misma voz, guarda la voz como Persona en tu primer éxito y reusa. Mantiene timbre entre tracks." },
+    { "id": "t14", "category": "CREATIVE", "title": "Referencia artistas con cuidado", "body": "'In the style of Billie Eilish' puede funcionar o fallar. Mejor describe textura: 'breathy intimate female, whisper-close mic'." },
+    { "id": "t15", "category": "TECH", "title": "Extend genera deriva", "body": "Cada 'Extend' de SUNO aleja el track del prompt original. Máximo 2 extends; después, regenera desde cero." },
+    { "id": "t16", "category": "TECH", "title": "Cover para limpiar voz", "body": "Si la voz salió bien pero el instrumental no, usa Cover con nuevo prompt instrumental. Mantiene la voz y renueva el beat." }
+  ]
+}

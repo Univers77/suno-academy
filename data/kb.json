@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "entries": [
+    { "id": "kb-struct",    "dimension": "structure",   "lessonRef": "L3",  "videoRef": "v01" },
+    { "id": "kb-vocal",     "dimension": "atmosphere",  "lessonRef": "L6",  "videoRef": "v02" },
+    { "id": "kb-spec",      "dimension": "specificity", "lessonRef": "L1",  "videoRef": "v01" },
+    { "id": "kb-neg",       "dimension": "negatives",   "lessonRef": "L8" },
+    { "id": "kb-pacing",    "dimension": "pacing",      "lessonRef": "L10" }
+  ]
+}

@@ -1,0 +1,103 @@
+/* ============================================================
+   SUNO ACADEMY · Design Tokens
+   Sistema "Kinetic Studio" — obsidiana + neón
+   ============================================================ */
+
+:root {
+  /* ── Base surfaces (obsidiana) ──────────────────────────── */
+  --bg:             #0c0e12;
+  --surface:        #0c0e12;
+  --surface-low:    #111318;
+  --surface-mid:    #1a1d23;
+  --surface-high:   #23262c;
+  --surface-bright: #2a2d33;
+
+  /* ── Acentos neón ──────────────────────────────────────── */
+  --primary:        #cf96ff;
+  --primary-dim:    #a533ff;
+  --secondary:      #00f4fe;
+  --tertiary:       #f3ffca;
+  --warn:           #f7ca65;
+  --danger:         #ff6d83;
+  --success:        #3cff99;
+
+  /* ── Texto ──────────────────────────────────────────────── */
+  --text:           #eaf2ff;
+  --text-2:         #b7c2da;
+  --text-3:         #6b7590;
+
+  /* ── Ghost line (solo accesibilidad) ───────────────────── */
+  --outline-ghost:  rgba(70, 72, 77, 0.20);
+
+  /* ── Gradients ─────────────────────────────────────────── */
+  --grad-primary:   linear-gradient(135deg, #cf96ff 0%, #a533ff 100%);
+  --grad-cool:      linear-gradient(135deg, #00f4fe 0%, #cf96ff 100%);
+  --grad-warm:      linear-gradient(135deg, #f3ffca 0%, #f7ca65 100%);
+  --grad-danger:    linear-gradient(90deg, #ff6d83, #f7ca65, #3cff99);
+
+  /* ── Ambient glows (reemplazan drop-shadows) ───────────── */
+  --glow-primary:   0 0 40px rgba(207, 150, 255, 0.16);
+  --glow-secondary: 0 0 40px rgba(0, 244, 254, 0.12);
+  --glow-tertiary:  0 0 40px rgba(243, 255, 202, 0.14);
+  --glow-card:      0 8px 40px rgba(0, 0, 0, 0.35);
+
+  /* ── Radii ─────────────────────────────────────────────── */
+  --r-sm:   8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-full: 999px;
+
+  /* ── Spacing ───────────────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 56px;
+
+  /* ── Glass ─────────────────────────────────────────────── */
+  --glass-bg:   rgba(42, 45, 51, 0.40);
+  --glass-blur: blur(20px);
+
+  /* ── Tipografía ────────────────────────────────────────── */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Tamaños de texto ──────────────────────────────────── */
+  --tx-display-lg: clamp(2.2rem, 5vw, 3.4rem);
+  --tx-display-md: clamp(1.7rem, 3.5vw, 2.4rem);
+  --tx-headline:   clamp(1.25rem, 2.2vw, 1.65rem);
+  --tx-title:      1.05rem;
+  --tx-body:       0.95rem;
+  --tx-small:      0.85rem;
+  --tx-xs:         0.75rem;
+
+  /* ── Z-index ───────────────────────────────────────────── */
+  --z-topbar: 50;
+  --z-nav:    45;
+  --z-toast:  90;
+  --z-modal:  100;
+
+  /* ── Transiciones ──────────────────────────────────────── */
+  --ease-out:  cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in:   cubic-bezier(0.8, 0.1, 0.95, 0.3);
+  --dur-fast:  0.16s;
+  --dur-med:   0.28s;
+  --dur-slow:  0.5s;
+}
+
+/* Accesibilidad: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0.01s;
+    --dur-med:  0.01s;
+    --dur-slow: 0.01s;
+  }
+}
+
+/* EOF */
