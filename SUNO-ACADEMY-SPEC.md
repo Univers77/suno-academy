@@ -639,7 +639,7 @@ El V1 **no necesita ninguna de estas**. El valor está en la combinación: motor
 ## 24. Contacto y créditos
 
 - **Proyecto:** SUNO ACADEMY
-- **Autor:** Alejandro Cosulich — GGLabs Bolivia
+- **Autor:** Alejandro Cosulich — GGLabs
 - **GitHub:** Univers77/suno-academy
 - **Versión del documento:** 1.0 — 2026-04-18
 - **Licencia:** MIT para el código; el contenido (videos, tips, playbooks) es curatorial y permanece bajo autoría GGLabs.

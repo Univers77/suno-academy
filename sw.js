@@ -4,7 +4,7 @@
 // Bump CACHE_NAME en cada release
 // ============================================================
 
-const CACHE_NAME = 'sa-v1-2026-04-18';
+const CACHE_NAME = 'sa-v2-2026-04-19';
 const PRECACHE = [
   './',
   './index.html',
