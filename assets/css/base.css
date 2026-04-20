@@ -1,6 +1,6 @@
 /* ============================================================
    SUNO ACADEMY · Base styles
-   Reset, tipografía, fondos, scrollbar
+   Reset, tipografía, fondos, scrollbar, utilidades
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -16,32 +16,46 @@ html {
 body {
   font-family: var(--font-body);
   font-size: var(--tx-body);
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--text);
   background: var(--bg);
-  min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: var(--grad-hero);
+  background-attachment: fixed;
 }
 
-/* Background canvas — absolute, detrás de todo */
+/* Background canvas */
 #bgc {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
-/* Tipografía display */
+/* Skip link (accesibilidad) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--sp-4);
+  z-index: 200;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--secondary);
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: var(--r-md);
+  transition: top var(--dur-fast);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* Tipografía */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   margin: 0 0 var(--sp-3);
   color: var(--text);
   line-height: 1.1;
@@ -71,32 +85,21 @@ button {
   padding: 0;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 2px;
+/* Focus visible — ring cian consistente */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 
 img, svg { display: block; max-width: 100%; }
 
-/* Helpers */
-.muted { color: var(--text-3); }
-.mono  { font-family: var(--font-mono); }
-.grad-text {
-  background: var(--grad-cool);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+/* ── Scrollbar premium ──────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-high) transparent;
 }
-
-/* Scrollbar oscuro */
-* { scrollbar-width: thin; scrollbar-color: var(--surface-high) transparent; }
-*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar { width: 6px; height: 6px; }
 *::-webkit-scrollbar-track { background: transparent; }
 *::-webkit-scrollbar-thumb {
   background: var(--surface-high);
@@ -110,26 +113,118 @@ img, svg { display: block; max-width: 100%; }
   color: var(--text);
 }
 
-/* Loading placeholder */
+/* ── Helpers / utilidades ──────────────────────────────────── */
+.muted      { color: var(--text-3); }
+.mono       { font-family: var(--font-mono); }
+.grad-text  {
+  background: var(--grad-cool);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.truncate   { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sr-only    { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+[hidden]    { display: none !important; }
+
+/* ── kbd element ────────────────────────────────────────────── */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--surface-high);
+  border: 1px solid var(--border-default);
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── Loading placeholder ───────────────────────────────────── */
 .loading-placeholder {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sp-4);
-  min-height: 60vh;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--sp-6) 0;
+  width: 100%;
 }
+
 .ring-ph {
-  width: 48px; height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 3px solid var(--surface-high);
+  border: 2px solid var(--surface-high);
   border-top-color: var(--primary);
-  animation: ringSpin 0.9s linear infinite;
+  animation: ringSpin 0.8s linear infinite;
+  margin: 0 auto var(--sp-4);
 }
+
 @keyframes ringSpin { to { transform: rotate(360deg); } }
 
-/* Utilidades */
-[hidden] { display: none !important; }
+/* ── Skeleton loading ──────────────────────────────────────── */
+@keyframes skelShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.skel-block {
+  border-radius: var(--r-md);
+  background: linear-gradient(
+    90deg,
+    var(--surface-mid) 0%,
+    var(--surface-high) 40%,
+    var(--surface-mid) 80%
+  );
+  background-size: 200% 100%;
+  animation: skelShimmer 1.6s ease-in-out infinite;
+  width: 100%;
+}
+
+.skel-row {
+  width: 100%;
+  display: flex;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.skel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+.skel-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .skel-grid, .skel-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ── Mono block ─────────────────────────────────────────────── */
+.mono-block {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  background: var(--surface);
+  color: var(--tertiary);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-subtle);
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 60px;
+}
 
 /* EOF */
