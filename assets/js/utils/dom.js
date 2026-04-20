@@ -49,13 +49,23 @@ export function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
-// Toast simple
-export function toast(text, kind = 'info') {
+// Toast con título opcional y duración configurable
+export function toast(text, kind = 'info', duration = 3800) {
   const stack = $('#toastStack');
   if (!stack) return;
-  const t = el('div', { class: `toast ${kind}`, role: 'status' }, text);
+  const t = el('div', { class: `toast ${kind}`, role: 'status', 'aria-live': 'polite' }, text);
   stack.appendChild(t);
-  setTimeout(() => { t.remove(); }, 3800);
+  // Limpiar al finalizar la animación toastOut (3.6s + 0.24s buffer)
+  setTimeout(() => { t.remove(); }, duration);
+}
+
+// Feedback visual en elemento (flash de color)
+export function flash(el, colorVar = '--success') {
+  if (!el) return;
+  const orig = el.style.backgroundColor;
+  el.style.transition = 'background-color 0.2s';
+  el.style.backgroundColor = `var(${colorVar})`;
+  setTimeout(() => { el.style.backgroundColor = orig; }, 400);
 }
 
 // EOF
