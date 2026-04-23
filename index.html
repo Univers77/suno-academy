@@ -26,6 +26,9 @@
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
 
+<!-- Star field -->
+<div id="stars" aria-hidden="true"></div>
+
 <!-- Background canvas -->
 <canvas id="bgc" aria-hidden="true"></canvas>
 
@@ -37,7 +40,7 @@
     </button>
     <a class="brand" href="#/dashboard" aria-label="SUNO ACADEMY — Inicio">
       <span class="brand-avatar" aria-hidden="true">A</span>
-      <span class="brand-text">SUNO <span class="brand-accent">ACADEMY</span></span>
+      <span class="brand-text glitch" data-t="SUNO ACADEMY">SUNO <span class="brand-name">ACADEMY</span></span>
     </a>
     <div class="topbar-right">
       <button class="search-btn" id="searchBtn" aria-label="Buscar (Ctrl+K)">
@@ -106,6 +109,12 @@
       </a>
     </nav>
     <div class="sidebar-footer">
+      <div class="sys-status">
+        <span class="sys-dot active"></span>
+        <span>Motor activo</span>
+        <span class="sys-dot online" style="margin-left:auto"></span>
+        <span>Online</span>
+      </div>
       <div class="sidebar-shortcuts">
         <kbd>K</kbd> buscar &nbsp;·&nbsp; <kbd>1–9</kbd> nav
       </div>

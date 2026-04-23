@@ -44,7 +44,7 @@ body {
   z-index: 200;
   padding: var(--sp-3) var(--sp-5);
   background: var(--secondary);
-  color: #0a0a0f;
+  color: #0c0e12;
   font-weight: 700;
   border-radius: var(--r-md);
   transition: top var(--dur-fast);
@@ -225,6 +225,166 @@ kbd {
   white-space: pre-wrap;
   word-break: break-word;
   min-height: 60px;
+}
+
+/* ── Scanlines overlay ──────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.025) 3px,
+    rgba(0, 0, 0, 0.025) 4px
+  );
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ── Star field ─────────────────────────────────────────────── */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--tw-dur, 3s) var(--tw-delay, 0s) ease-in-out infinite alternate;
+  opacity: 0;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0;    transform: scale(0.7); }
+  100% { opacity: 0.85; transform: scale(1.3); }
+}
+
+/* ── Glitch text effect ─────────────────────────────────────── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-t);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.glitch::before {
+  color: var(--secondary);
+  -webkit-text-fill-color: var(--secondary);
+  background: none;
+  animation: g1 6s ease-in-out infinite;
+  left: 2px;
+}
+
+.glitch::after {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  background: none;
+  animation: g2 6s ease-in-out infinite;
+  left: -2px;
+}
+
+@keyframes g1 {
+  0%, 88%  { clip-path: none; opacity: 0; transform: translateX(0); }
+  89%, 91% { clip-path: inset(20% 0 68% 0); opacity: 0.9; transform: translateX(3px); }
+  92%, 94% { clip-path: inset(60% 0 10% 0); opacity: 0.8; transform: translateX(-3px); }
+  95%, 100%{ clip-path: none; opacity: 0; transform: translateX(0); }
+}
+
+@keyframes g2 {
+  0%, 90%  { clip-path: none; opacity: 0; transform: translateX(0); }
+  91%, 93% { clip-path: inset(42% 0 38% 0); opacity: 0.75; transform: translateX(-2px); }
+  94%, 96% { clip-path: inset(8% 0 78% 0); opacity: 0.7; transform: translateX(2px); }
+  97%, 100%{ clip-path: none; opacity: 0; transform: translateX(0); }
+}
+
+/* ── Float animation ────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+.float { animation: float 4s ease-in-out infinite; }
+
+/* ── Flicker animation ──────────────────────────────────────── */
+@keyframes flicker {
+  0%, 93%, 100% { opacity: 1; }
+  94%, 96%      { opacity: 0.82; }
+  95%, 97%      { opacity: 0.96; }
+}
+.flicker { animation: flicker 9s ease-in-out infinite; }
+
+/* ── Rotating conic-gradient border ────────────────────────── */
+@property --rot-a {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rot-border {
+  background:
+    linear-gradient(var(--surface-low), var(--surface-low)) padding-box,
+    conic-gradient(from var(--rot-a), var(--primary), var(--secondary), var(--tertiary), var(--primary)) border-box;
+  border: 2px solid transparent;
+  animation: rotBorder 4s linear infinite;
+}
+
+@keyframes rotBorder { to { --rot-a: 360deg; } }
+
+/* ── Cyber card (.cc) — glass + top gradient highlight ─────── */
+.cc {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.cc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.cc:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ── 3D tilt cards ──────────────────────────────────────────── */
+.t3d {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* EOF */

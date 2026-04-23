@@ -10,6 +10,7 @@ import { initGamification }    from './engines/gamification.js';
 import { $, toast }            from './utils/dom.js';
 import { initSearch, addToIndex } from './utils/search.js';
 import { initShortcuts }       from './utils/shortcuts.js';
+import { initEffects, refreshEffects } from './utils/effects.js';
 
 // ── Datos de la app ─────────────────────────────────────────
 const appData = {
@@ -188,6 +189,9 @@ async function boot() {
     // Background canvas
     initBackgroundWaves($('#bgc'));
 
+    // Visual effects (stars, 3D tilt, cyber glow)
+    initEffects();
+
     // UI
     initMobileMenu();
     initCreditChip();
@@ -196,13 +200,16 @@ async function boot() {
     // Señal de boot para vistas que esperan datos
     window.dispatchEvent(new CustomEvent('suno:ready', { detail: { data: appData } }));
 
+    // Re-init tilt/glow after each view renders new cards
+    window.addEventListener('suno:view-rendered', () => refreshEffects());
+
   } catch (err) {
     console.error('[SUNO] Boot error:', err);
     document.body.insertAdjacentHTML('afterbegin', `
       <div style="
         position:fixed;top:0;left:0;right:0;
         padding:12px 16px;
-        background:#f87171;color:#0a0a0f;
+        background:#ff6d83;color:#0c0e12;
         z-index:9999;font-family:monospace;font-size:13px;
         display:flex;align-items:center;gap:8px
       ">

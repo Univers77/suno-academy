@@ -8,10 +8,11 @@
   position: sticky;
   top: 0;
   z-index: var(--z-topbar);
-  background: rgba(10, 10, 15, 0.80);
+  background: rgba(12, 14, 18, 0.82);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(207, 150, 255, 0.07);
+  box-shadow: 0 0 20px rgba(207, 150, 255, 0.06);
 }
 
 .topbar-inner {
@@ -67,9 +68,9 @@
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  color: #0a0a0f;
+  color: #0c0e12;
   font-size: 0.95rem;
-  box-shadow: var(--shadow-glow-primary);
+  box-shadow: var(--glow-primary);
   flex-shrink: 0;
 }
 .brand-text { color: var(--text); }
@@ -99,8 +100,8 @@
 }
 .credit-chip:hover {
   background: var(--surface-high);
-  border-color: rgba(34, 211, 238, 0.2);
-  box-shadow: var(--shadow-glow-secondary);
+  border-color: rgba(0, 244, 254, 0.22);
+  box-shadow: var(--glow-secondary);
 }
 
 /* ── Shell ───────────────────────────────────────────────── */
@@ -120,8 +121,10 @@
   position: sticky;
   top: 65px;
   height: calc(100dvh - 95px);
-  background: var(--surface-low);
-  border: 1px solid var(--border-subtle);
+  background: rgba(12, 14, 18, 0.75);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(207, 150, 255, 0.05);
   border-radius: var(--r-xl);
   padding: var(--sp-4);
   display: flex;
@@ -235,7 +238,7 @@
   right: 0;
   bottom: 0;
   z-index: var(--z-nav);
-  background: rgba(10, 10, 15, 0.90);
+  background: rgba(12, 14, 18, 0.90);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--border-subtle);
@@ -260,7 +263,7 @@
 .bn-link:hover { color: var(--text-2); }
 .bn-link.active { color: var(--secondary); }
 .bn-link.active .bn-icon {
-  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
+  filter: drop-shadow(0 0 8px rgba(0, 244, 254, 0.6));
 }
 
 .bn-icon { font-size: 1.15rem; }
@@ -315,6 +318,50 @@
 @media (max-width: 480px) {
   .credit-chip { padding: 7px 10px; font-size: var(--tx-xs); }
   .topbar-inner { gap: var(--sp-2); }
+}
+
+/* ── System status (sidebar footer) ─────────────────────────── */
+.sys-status {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--tx-caption);
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.sys-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sys-dot.online {
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+  animation: sysPulse 2s ease-in-out infinite;
+}
+
+.sys-dot.active {
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary);
+  animation: sysPulse 2s ease-in-out infinite 0.6s;
+}
+
+@keyframes sysPulse {
+  0%, 100% { opacity: 1;    transform: scale(1);    }
+  50%      { opacity: 0.35; transform: scale(0.85); }
+}
+
+/* ── Brand gradient text ─────────────────────────────────────── */
+.brand-name {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
 /* EOF */

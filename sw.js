@@ -4,7 +4,7 @@
 // Bump CACHE_NAME en cada release para invalidar caché
 // ============================================================
 
-const CACHE_NAME = 'sa-v3-2026-04-19';
+const CACHE_NAME = 'sa-v4-2026-04-20';
 
 const PRECACHE = [
   './',
@@ -21,6 +21,7 @@ const PRECACHE = [
   './assets/js/utils/dom.js',
   './assets/js/utils/shortcuts.js',
   './assets/js/utils/search.js',
+  './assets/js/utils/effects.js',
   './assets/js/engines/analyzer.js',
   './assets/js/engines/builder.js',
   './assets/js/engines/gamification.js',
